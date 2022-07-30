@@ -82,7 +82,7 @@
 		</data>
 		<key>Frameworks/App.framework/App</key>
 		<data>
-		i3g3swYPVuTzDgNNYwKX8gOUmzI=
+		hULNxSy0JTrvvhhwmHtKwveYejc=
 		</data>
 		<key>Frameworks/App.framework/Info.plist</key>
 		<data>
@@ -90,7 +90,7 @@
 		</data>
 		<key>Frameworks/App.framework/_CodeSignature/CodeResources</key>
 		<data>
-		og+jkNmWJmRfdTvQFrsFbvSQlIc=
+		ml4uCWVJ9CC7khaNU/kaaTboOZw=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.json</key>
 		<data>
@@ -222,7 +222,7 @@
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/kernel_blob.bin</key>
 		<data>
-		rBvD1WUjQUqV78Mzp7ahrelC/dc=
+		YA+BW7sFd2+1NFmHSCaFcsR91F0=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
 		<data>
@@ -342,7 +342,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		LfXPmtoIAhl1b/DXeWwlp4VmW/w=
+		XABCbUffTQ8O9/L5zOs4OfH45a0=
 		</data>
 		<key>PkgInfo</key>
 		<data>
@@ -564,11 +564,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			i3g3swYPVuTzDgNNYwKX8gOUmzI=
+			hULNxSy0JTrvvhhwmHtKwveYejc=
 			</data>
 			<key>hash2</key>
 			<data>
-			kcekHaKoYHS98/j04pUPqX9RynSKT6rLzMxHDjlbAlM=
+			z155VViNZYWHo4hW0xDhKc7dFTFBsV6T92Sb560vEyM=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/Info.plist</key>
@@ -586,11 +586,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			og+jkNmWJmRfdTvQFrsFbvSQlIc=
+			ml4uCWVJ9CC7khaNU/kaaTboOZw=
 			</data>
 			<key>hash2</key>
 			<data>
-			9R1OITUXP98OFjhvut9vg4hIYRlqnLa1+p00EUKfrIc=
+			J3cOmHgHJC585RNMJzYjsDU5FpMVbZSidk4B/3K6SbQ=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.json</key>
@@ -949,11 +949,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			rBvD1WUjQUqV78Mzp7ahrelC/dc=
+			YA+BW7sFd2+1NFmHSCaFcsR91F0=
 			</data>
 			<key>hash2</key>
 			<data>
-			QEehc8IJnO3NE0h8CKbFkzkRwXNh17J/ndGG1b96KAU=
+			w/RHLlvu1A/d05P7KZ8Q+P6slwDwZQ382oTqH5uNnqs=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>

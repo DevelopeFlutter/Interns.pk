@@ -29,16 +29,20 @@ class _SignUpViewState extends State<SignUpView> {
         controller.confirmPassword.value
       );
       PopupLoader.hide();
-      if(!authResponse["error"]){
+
+      print(authResponse["content"]);
+      if(authResponse["content"]["status"] == 200 ){
         ShowMessage().showMessage(context, 'Successfully SignUp');
         Navigator.push(context,
             MaterialPageRoute(builder: (context) => homePageView()));
       }else{
-        ShowMessage().showErrorMessage(context, 'Some Error');
+        ShowMessage().showErrorMessage(context, authResponse["message"]);
         print("message");
       }
     }catch(e){
       PopupLoader.hide();
+      ShowMessage().showErrorMessage(context, "something went wrong");
+
       print(['SubmitLogin Exception:', e.toString()]);
     }
   }
@@ -123,10 +127,6 @@ class _SignUpViewState extends State<SignUpView> {
               if(_formKey.currentState!.validate()){
                 _submitForm();
               }
-             // if(SignUpApi().submitData('FirstName', 'LastName', 'Phone', 'Email', 'Password')){
-             //   Navigator.push(context,
-             //       MaterialPageRoute(builder: (context) => signInView()));
-             // };
 
             },
             child: const Text(
