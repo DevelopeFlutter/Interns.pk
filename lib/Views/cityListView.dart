@@ -28,7 +28,7 @@ class _CityListViewState extends State<CityListView> {
       body: ListView.builder(
         shrinkWrap: true,
         physics: const ScrollPhysics(),
-        itemCount: 15,
+        itemCount: 12,
         itemBuilder: (BuildContext context, int index) => Padding(
           padding: const EdgeInsets.only(
             top: 30,
