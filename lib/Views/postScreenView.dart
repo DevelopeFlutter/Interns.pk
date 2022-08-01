@@ -3,7 +3,10 @@ import 'package:interns/Theme/app_Colors.dart';
 import 'package:interns/Views/Button.dart';
 import 'package:interns/Views/container_with-image.dart';
 import 'package:interns/Views/postScreen_Container.dart';
+import '../utils/loader.dart';
+import '../utils/showMessage.dart';
 import 'Details.dart';
+import 'HomePage.dart';
 
 class BasicInformation extends StatefulWidget {
   const BasicInformation({Key? key}) : super(key: key);
@@ -14,6 +17,30 @@ class BasicInformation extends StatefulWidget {
 class _BasicInformationState extends State<BasicInformation> {
   bool Showtextfiled = false;
   final TextEditingController Controller = TextEditingController();
+  // void _JobPostForm()async{
+  //   FocusScope.of(context).unfocus();
+  //   try{
+  //     PopupLoader.show();
+  //     var authResponse = await Login(
+  //       controller1.Email.value,
+  //       controller1.Password.value,
+  //     );
+  //     PopupLoader.hide();
+  //     print(authResponse['content']);
+  //
+  //     if(authResponse["content"]['status'] == 200){
+  //       ShowMessage().showMessage(context, 'Successfully Login');
+  //       Navigator.push(context,
+  //           MaterialPageRoute(builder: (context) => const homePageView()));
+  //     }else{
+  //       ShowMessage().showErrorMessage(context, 'Some Error');
+  //       print("message");
+  //     }
+  //   }catch(e){
+  //     PopupLoader.hide();
+  //     print(['SubmitLogin Exception:', e.toString()]);
+  //   }
+  // }
 
   var items = [
     'Karachi',
