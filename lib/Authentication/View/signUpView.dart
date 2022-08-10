@@ -19,7 +19,6 @@ class _SignUpViewState extends State<SignUpView> {
   AuthController controller = Get.put(AuthController());
   void _submitForm()async{
     FocusScope.of(context).unfocus();
-
     try{
       PopupLoader.show();
       var authResponse = await signup(
@@ -32,7 +31,7 @@ class _SignUpViewState extends State<SignUpView> {
 
       print(authResponse["content"]);
       if(authResponse["content"]["status"] == 200 ){
-        ShowMessage().showMessage(context, 'Successfully SignUp');
+        ShowMessage().showMessage(context, 'Successfuslly SignUp');
         Navigator.push(context,
             MaterialPageRoute(builder: (context) => homePageView()));
       }else{

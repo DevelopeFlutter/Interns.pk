@@ -45,12 +45,6 @@ class _FeedBackState extends State<FeedBack> {
             ),
             Padding(
               padding: const EdgeInsets.only(top: 20),
-              child: SimpleTextFormFiled(
-                labelText: 'Phone',
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 20),
               child:  SimpleTextFormFiled(
                 labelText: 'Message',
               ),

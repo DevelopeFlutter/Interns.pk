@@ -1,6 +1,7 @@
 class api_manger{
-  static const BASE_URL = "https://intenstest12.herokuapp.com/api/user/";
+  static const BASE_URL = "https://interns-pk.herokuapp.com/api/user/";
   static const SIGN_UP = "register";
-  static const Login = "login";
-  static const  JobPost= '';
+  static const LOGIN = "login";
+  static const  JOBPOST= 'company/jobpost';
+  static const GETJOB = "";
 }

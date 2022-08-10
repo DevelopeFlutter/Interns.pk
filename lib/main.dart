@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:interns/Views/HomePage.dart';
+import 'package:interns/Views/New_JobPost_section/Job_Post.dart';
+
+
+import 'Views/New_JobPost_section/Job_Post.dart';
 void main() {
   runApp(const MyApp());
 }
@@ -10,7 +14,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: homePageView(),
+      home:
+      //JObPost(),
+      homePageView(),
       builder: EasyLoading.init(),
 
     );

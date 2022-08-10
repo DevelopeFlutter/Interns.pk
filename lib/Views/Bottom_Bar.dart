@@ -3,10 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:interns/Views/HomePage.dart';
 import 'package:interns/Views/Job%20Found.dart';
 import 'package:interns/Views/My_profile.dart';
-import 'package:interns/Views/postScreenView.dart';
+import 'package:interns/Views/New_JobPost_section/Job_Post.dart';
+import 'package:interns/Views/OldJobPostCode/postScreenView.dart';
 import 'package:interns/Views/setting.dart';
 import 'package:interns/Theme/app_Colors.dart';
-import 'postScreenView.dart';
+import 'OldJobPostCode/postScreenView.dart';
 
 
 
@@ -25,7 +26,8 @@ class _BottomBarState extends State<BottomBar> {
      const JobFound(),
      const MyProfile(),
     const SettingView(),
-     const BasicInformation(),
+    JObPost()
+     //const BasicInformation(),
   ];
 
   void _onItemTapped(int index) {
