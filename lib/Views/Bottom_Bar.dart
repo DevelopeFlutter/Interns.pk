@@ -26,7 +26,7 @@ class _BottomBarState extends State<BottomBar> {
      const JobFound(),
      const MyProfile(),
     const SettingView(),
-    JObPost()
+    JobPost()
      //const BasicInformation(),
   ];
 

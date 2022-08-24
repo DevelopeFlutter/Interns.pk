@@ -9,10 +9,10 @@ var password = "".obs;
 var confirmPassword = "".obs;
 }
 
-
 class Authcontroller extends GetxController{
   //Login Controller!
   RxBool isObsecureText = true.obs;
   var Email = "".obs;
   var Password = "".obs;
+
 }

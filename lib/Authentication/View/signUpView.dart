@@ -31,9 +31,9 @@ class _SignUpViewState extends State<SignUpView> {
 
       print(authResponse["content"]);
       if(authResponse["content"]["status"] == 200 ){
-        ShowMessage().showMessage(context, 'Successfuslly SignUp');
+        ShowMessage().showMessage(context, 'Successfully SignUp');
         Navigator.push(context,
-            MaterialPageRoute(builder: (context) => homePageView()));
+            MaterialPageRoute(builder: (context) => const homePageView()));
       }else{
         ShowMessage().showErrorMessage(context, authResponse["message"]);
         print("message");

@@ -379,7 +379,7 @@ class _hompePageSecondPartState extends State<hompePageSecondPart> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const Jobdetails()));
+                                builder: (context) => Jobdetails('','','','')));
                       },
                     ),
                   ]),

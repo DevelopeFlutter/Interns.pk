@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:interns/Authentication/Controller/Job_Get_Controller.dart';
 import 'package:interns/Services/Auth_Services/signUp.dart';
 import 'package:interns/Theme/app_Colors.dart';
 import 'package:interns/Views/Account_Settings.dart';
@@ -10,19 +11,18 @@ import 'package:interns/Views/New_JobPost_section/Job_Post_TextFields/Company.da
 import 'package:interns/Views/New_JobPost_section/Job_Post_TextFields/Job_Location.dart';
 import 'package:interns/Views/New_JobPost_section/Job_Post_TextFields/job_title.dart';
 import 'package:get/get.dart';
+import 'package:interns/Views/for_test.dart';
 import 'package:interns/utils/loader.dart';
+import '../../Network/APIs_call.dart';
 import '../../utils/showMessage.dart';
-
-class JObPost extends StatefulWidget {
-  const JObPost({Key? key}) : super(key: key);
-
+class JobPost extends StatefulWidget {
+  const JobPost({Key? key}) : super(key: key);
   @override
-  State<JObPost> createState() => _JObPostState();
+  State<JobPost> createState() => _JobPostState();
 }
-
-class _JObPostState extends State<JObPost> {
+class _JobPostState extends State<JobPost> {
   JobPostController controller1 = Get.put(JobPostController());
-  var _result;
+   var _result;
   void JobPostForm() async {
     FocusScope.of(context).unfocus();
     try {
@@ -47,7 +47,7 @@ class _JObPostState extends State<JObPost> {
       if (authResponse["content"]['status'] == 200) {
         ShowMessage().showMessage(context, 'Successfully JobPost');
         // Navigator.push(context,
-        //     MaterialPageRoute(builder: (context) => const homePageView()));
+        //     MaterialPageRoute(builder:(context) => const homePageView()));
         null;
       } else {
         ShowMessage().showErrorMessage(context, 'Some Error');
@@ -61,12 +61,12 @@ class _JObPostState extends State<JObPost> {
 
   @override
   Widget build(BuildContext context) {
+
     var Fulltime ="Full-time";
     var PartTime = "Part-time";
     var Onsite= "On-site";
     var Remote= "Remote";
     var Hybrid= "Hybrid";
-
     return Scaffold(
         appBar: AppBar(
           leading: IconButton(
@@ -567,8 +567,7 @@ class _JObPostState extends State<JObPost> {
                         ),
                         IconButton(
                             onPressed: () {
-                               // ModalBottomSheetJobType.moreModalBottomSheet(
-                               //     context);
+
                               showModalBottomSheet(
                                   shape: const RoundedRectangleBorder(
                                       borderRadius: BorderRadius.only(
@@ -579,14 +578,6 @@ class _JObPostState extends State<JObPost> {
                                   builder: (BuildContext context) {
                                     return StatefulBuilder(
                                       builder: (BuildContext context, StateSetter setState ) {
-                                      //   void  groupvalue( value,){
-                                      //     setState(() {
-                                      //       _result= value;
-                                      //
-                                      //       controller1.setOrderType(_result);
-                                      //     }
-                                      //     );
-                                      // }
                                         return SizedBox(
                                           height: 175,
                                           child: Column(
@@ -639,7 +630,6 @@ class _JObPostState extends State<JObPost> {
 
                                                                 setState(() {
                                                                   _result= value;
-
                                                                   controller1.JobTypeValue(Fulltime);
                                                                 }
 
@@ -676,8 +666,6 @@ class _JObPostState extends State<JObPost> {
                                                               fillColor: MaterialStateColor.resolveWith(
                                                                       (states) => appcolors.greenishText),
                                                               value:2,
-                                                              //Value2,
-                                                             // Value2= 'Part-time',
                                                               groupValue: _result,
                                                               onChanged: (value){
                                                                 setState(() {
@@ -778,7 +766,8 @@ class _JObPostState extends State<JObPost> {
                           MaterialStateProperty.all(appcolors.greenishText),
                     ),
                     onPressed: () {
-                      JobPostForm();
+                      // JobPostForm();
+                      GeTJob().GetJob();
                     },
                     child: const Text(
                       'Post',
