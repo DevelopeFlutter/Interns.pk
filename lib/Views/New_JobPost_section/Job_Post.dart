@@ -1,19 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:interns/Authentication/Controller/Job_Get_Controller.dart';
 import 'package:interns/Services/Auth_Services/signUp.dart';
 import 'package:interns/Theme/app_Colors.dart';
-import 'package:interns/Views/Account_Settings.dart';
 import 'package:interns/Views/New_JobPost_section/GetX_class.dart';
-import 'package:interns/Views/New_JobPost_section/Job_Post_Bottom_sheets/Modal_Bottom_sheet_Job_type.dart';
-import 'package:interns/Views/New_JobPost_section/Job_Post_Bottom_sheets/Modal_Bottom_sheet_Workplace.dart';
 import 'package:interns/Views/New_JobPost_section/Job_Post_TextFields/Add_Description.dart';
 import 'package:interns/Views/New_JobPost_section/Job_Post_TextFields/Company.dart';
 import 'package:interns/Views/New_JobPost_section/Job_Post_TextFields/Job_Location.dart';
 import 'package:interns/Views/New_JobPost_section/Job_Post_TextFields/job_title.dart';
 import 'package:get/get.dart';
-import 'package:interns/Views/for_test.dart';
 import 'package:interns/utils/loader.dart';
-import '../../Network/APIs_call.dart';
 import '../../utils/showMessage.dart';
 class JobPost extends StatefulWidget {
   const JobPost({Key? key}) : super(key: key);
@@ -766,7 +760,7 @@ class _JobPostState extends State<JobPost> {
                           MaterialStateProperty.all(appcolors.greenishText),
                     ),
                     onPressed: () {
-                      // JobPostForm();
+                       //JobPostForm();
                       GeTJob().GetJob();
                     },
                     child: const Text(

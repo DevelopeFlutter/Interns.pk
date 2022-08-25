@@ -1,29 +1,19 @@
 import 'package:get/get.dart';
-// class JobsList {
-//  final String? message;
-//  final int? status;
-//  final  List<dynamic> data;
-//   JobsList( this.message,this.status,this.data);
-//  List<dynamic> Getdata(){
-//    return data;
-//  }
-//  }
- class GetJobController extends GetxController{
-
-  dynamic  complResponse ;
-
- dynamic completResponse(response){
-
-  complResponse = response;
-  // return complResponse;
-  print('$complResponse This is the data in the Model class');
+class JobsList extends GetxController{
+  String? message;
+  int? status;
+   List<dynamic> data = [];
+   List Getdata(){
+     // print(data);
+    return data;
+  }
+ dynamic setData(String message, int status, List<dynamic> data){
+   this.message = message;
+  this.status = status;
+  this.data = data;
+ }
  }
 
- dynamic get getData => complResponse ;
-
-
-
- }
 
 
 

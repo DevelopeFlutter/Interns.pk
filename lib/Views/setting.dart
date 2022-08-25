@@ -3,14 +3,12 @@ import 'package:interns/Theme/app_Colors.dart';
 import 'package:interns/Views/About_Interns.dart';
 import 'package:interns/Views/Account_Settings.dart';
 import 'package:interns/Views/Feeback.dart';
-
-
+import 'package:interns/Views/remove_post.dart';
 class SettingView extends StatefulWidget {
   const SettingView({Key? key}) : super(key: key);
   @override
   State<SettingView> createState() => _SettingViewState();
 }
-
 class _SettingViewState extends State<SettingView> {
   @override
   Widget build(BuildContext context) {
@@ -167,6 +165,39 @@ class _SettingViewState extends State<SettingView> {
                       "Sign Out",
                       style: TextStyle(color: Colors.black,
                       fontSize: 16),
+                    )),
+                const Icon(
+                  Icons.arrow_forward_ios,
+                  color: appcolors.greenishText,
+                  size: 22,
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(
+            height: 18,
+          ),
+          Container(
+            width: double.infinity,
+            height: 2,
+            color: Colors.grey.withOpacity(0.5),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 20, right: 20, top: 12),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => remove_job()));
+                    },
+                    child: const Text(
+                      "Delete Posted Applications",
+                      style: TextStyle(color: Colors.black,
+                          fontSize: 16),
                     )),
                 const Icon(
                   Icons.arrow_forward_ios,

@@ -7,7 +7,9 @@ import 'package:interns/Views/New_JobPost_section/Job_Post.dart';
 import 'package:interns/Views/OldJobPostCode/postScreenView.dart';
 import 'package:interns/Views/setting.dart';
 import 'package:interns/Theme/app_Colors.dart';
+import '../Authentication/Controller/Job_Get_Controller.dart';
 import 'OldJobPostCode/postScreenView.dart';
+import 'package:get/get.dart';
 
 
 
@@ -23,10 +25,10 @@ class _BottomBarState extends State<BottomBar> {
   static  final List<Widget> _widgetOptions = <Widget>[
 
     const hompePageSecondPart(),
-     const JobFound(),
+     const JobApplied(),
      const MyProfile(),
     const SettingView(),
-    JobPost()
+    const JobPost()
      //const BasicInformation(),
   ];
 
@@ -35,8 +37,10 @@ class _BottomBarState extends State<BottomBar> {
       _selectedIndex = index;
     });
   }
+  // JobsList GetData = Get.find<JobsList>();
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
         body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),

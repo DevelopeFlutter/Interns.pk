@@ -96,20 +96,16 @@ Future jobPost(
     "content": _content,
   };
 }
+
 class GeTJob {
-  GetJobController GetTheJob = Get.put(GetJobController());
+  final JobsList  GetTheJob = Get.put(JobsList());
   dynamic Data;
-  Future <dynamic> GetJob() async {
+   GetJob() async {
     var response = await API().get(api_manager.GETJOB);
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
-     //
-      GetTheJob.completResponse(data);
-     // JobsList jobs = JobsList(data['message'], data['status'], data['data']);
-      //Data = jobs.Getdata();
-      // print('$Data');
-      Data= data['data'];
-       return Data;
+      GetTheJob.setData(data['message'], data['status'], data['data']);
+
 
     }
   }

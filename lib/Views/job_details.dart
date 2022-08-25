@@ -70,7 +70,7 @@ class _JobdetailsState extends State<Jobdetails> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => const JobFound()));
+                                  builder: (context) => const JobApplied()));
                         },
                         child: const Text("Apply"),
                         style: ButtonStyle(

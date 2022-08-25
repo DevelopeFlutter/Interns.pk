@@ -3,10 +3,8 @@ import 'package:interns/Services/Auth_Services/signUp.dart';
 import 'package:interns/Theme/app_Colors.dart';
 import 'package:interns/Views/job_details.dart';
 import 'package:interns/backen_json/lates_post.dart';
-
 import '../Authentication/Controller/Job_Get_Controller.dart';
 import 'package:get/get.dart';
-
 class jobListView extends StatefulWidget {
   const jobListView({
     Key? key,
@@ -14,19 +12,17 @@ class jobListView extends StatefulWidget {
   @override
   State<jobListView> createState() => _jobListViewState();
 }
-
 class _jobListViewState extends State<jobListView> {
   TextEditingController nameController = TextEditingController();
-  var getObject  =GetJobController();
-  @override
-  void initState(){
-    super.initState();
-    GeTJob().GetJob();
-    print("The InitState is Called");
-  }
+  // @override
+  //  initState() {
+  //    GeTJob().GetJob();
+  //   super.initState();
+  //   print(" The InitState is Called");
+  // }
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-     print('${ getObject.getData } This is the Listview');
+    JobsList GetData = Get.find<JobsList>();
     return Scaffold(
         resizeToAvoidBottomInset: false,
         body: Column(children: [
@@ -40,7 +36,8 @@ class _jobListViewState extends State<jobListView> {
                   padding: const EdgeInsets.only(left: 0, right: 15, top: 25),
                   child: IconButton(
                     onPressed: () {
-                      Navigator.of(context).pop();
+                       Navigator.of(context).pop();
+                      // JobsList().Getdata();
                     },
                     icon: const Icon(Icons.arrow_back),
                     iconSize: 26,
@@ -81,14 +78,10 @@ class _jobListViewState extends State<jobListView> {
           ),
           SizedBox(
               height: size.height - 170,
-              child: FutureBuilder(
-                  future: GeTJob().GetJob(),
-                  builder: (context, AsyncSnapshot snapshot) {
-                    if (snapshot.hasData) {
-                      return ListView.builder(
+              child: !GetData.data.isEmpty?ListView.builder(
                           shrinkWrap: true,
                           scrollDirection: Axis.vertical,
-                          itemCount: snapshot.data.length,
+                          itemCount: GetData.data.length,
                           itemBuilder: (BuildContext context, int index) {
                             return Container(
                               height: 120,
@@ -136,7 +129,7 @@ class _jobListViewState extends State<jobListView> {
                                                 padding: const EdgeInsets.only(
                                                     top: 15),
                                                 child: Text(
-                                                  snapshot.data[index]
+                                                  GetData.data[index]
                                                       ['job_title'],
                                                   style: const TextStyle(
                                                       fontSize: 20,
@@ -146,7 +139,7 @@ class _jobListViewState extends State<jobListView> {
                                                 ),
                                               ),
                                               Text(
-                                                snapshot.data[index]
+                                                GetData.data[index]
                                                     ['company_name'],
                                                 style: const TextStyle(
                                                   fontSize: 15,
@@ -156,11 +149,11 @@ class _jobListViewState extends State<jobListView> {
                                               Row(
                                                 children: [
                                                   Text(
-                                                    snapshot.data[index]
+                                                    GetData.data[index]
                                                         ['job_location'],
                                                   ),
                                                   Text(
-                                                      "(${snapshot.data[0]['work_placetype']})"),
+                                                      "(${GetData.data[0]['work_placetype']})"),
                                                 ],
                                               ),
                                               Text(lates_post[index]
@@ -174,19 +167,29 @@ class _jobListViewState extends State<jobListView> {
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) => Jobdetails(
-                                                '${snapshot.data[index]['job_location']}',
-                                                ' ${snapshot.data[index]['job_title']}',
-                                                '${snapshot.data[index]['job_type']}',
-                                                '${snapshot.data[index]['description']}')));
+                                                '${GetData.data[index]['job_location']}',
+                                                ' ${GetData.data[index]['job_title']}',
+                                                '${GetData.data[index]['job_type']}',
+                                                '${GetData.data[index]['description']}'
+                                            )
+                                        )
+                                    );
                                   },
                                 ),
                               ]),
                             );
-                          });
-                    } else {
-                      return Center(child: CircularProgressIndicator());
-                    }
-                  }))
-        ]));
+                          }
+                        ):Text("No Data Found",style: TextStyle(fontSize: 36),)
+          )]
+                        )
+          );
+                  //  }
+                    // else {
+                    //   return const Center(child: CircularProgressIndicator());
+                    // }
+                  // }
+                  //   )
+                    //)
+
   }
 }

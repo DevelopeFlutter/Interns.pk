@@ -2,9 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:interns/Theme/app_Colors.dart';
 import 'package:interns/Views/Style.dart';
 
-class JobFound extends StatelessWidget {
-  const JobFound({Key? key}) : super(key: key);
+import '../Authentication/Controller/Job_Get_Controller.dart';
+import '../Services/Auth_Services/signUp.dart';
+import 'package:get/get.dart';
+
+class JobApplied extends StatefulWidget {
+  const JobApplied({Key? key}) : super(key: key);
+
   @override
+  State<JobApplied> createState() => _JobAppliedState();
+}
+
+class _JobAppliedState extends State<JobApplied> {
+  @override
+  void initState() {
+    GeTJob().GetJob();
+    super.initState();
+    // print("${GetData.Getdata()} The InitState is Called");
+  }
+  JobsList GetData = Get.find<JobsList>();
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
@@ -15,13 +31,15 @@ class JobFound extends StatelessWidget {
           padding: const EdgeInsets.only(top: 8.0),
           child: ListView.builder(
             scrollDirection: Axis.vertical,
-            itemCount: 6,
+            itemCount:
+            //6,
+            GetData.data.length,
             itemBuilder: (BuildContext context, int index) => Padding(
               padding:
                   const EdgeInsets.only(top: 5, bottom: 5),
               child: Column(
                 children: [
-                 Container(
+                 SizedBox(
                   height: 77,
                   width: double.infinity,
                   child: Padding(
@@ -31,17 +49,18 @@ class JobFound extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Column(
-                          //mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children:  [
-                            Padding(
+                             Padding(
                               padding: EdgeInsets.only(right: 34),
-                              child: Text("Flutter Developer"),
+                              child: Text(''
+                                  '${GetData.data[index]['job_title']}'
+                                  ''),
                             ),
                             Padding(
-                              padding: EdgeInsets.only(top: 8.0, right: 80),
+                              padding: const EdgeInsets.only(top: 8.0, right: 80),
                               child: Text("SAU-Tech",style: AppTextStyle.WithOpacityBlackColor,),
                             ),
-                            Padding(
+                            const Padding(
                               padding: EdgeInsets.only(top: 8.0, right: 40),
                               child: Text("Lahore, Pakistan"),
                             )

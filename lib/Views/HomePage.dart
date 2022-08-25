@@ -9,15 +9,21 @@ import 'package:interns/Authentication/View/signUpView.dart';
 import 'package:interns/backen_json/brows_job_by_city.dart';
 import 'package:interns/backen_json/lates_post.dart';
 
+import '../Authentication/Controller/Job_Get_Controller.dart';
+import '../Services/Auth_Services/signUp.dart';
+import 'package:get/get.dart';
+
 class homePageView extends StatefulWidget {
   const homePageView({Key? key}) : super(key: key);
 
   @override
+
   State<homePageView> createState() => _homePageViewState();
 }
 
 class _homePageViewState extends State<homePageView> {
   @override
+
   Widget build(BuildContext context) {
     return const BottomBar();
 
@@ -35,6 +41,12 @@ class _hompePageSecondPartState extends State<hompePageSecondPart> {
   TextEditingController companyNameController = TextEditingController();
   TextEditingController placeNameController = TextEditingController();
   @override
+  void initState() {
+    super.initState();
+   // GeTJob().GetJob();
+  //  print("${GetData.Getdata()} The InitState is Called");
+  }
+ // JobsList GetData = Get.find<JobsList>();
   Widget build(BuildContext context) {
     return Scaffold(
         body: SingleChildScrollView(
@@ -379,7 +391,18 @@ class _hompePageSecondPartState extends State<hompePageSecondPart> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => Jobdetails('','','','')));
+                                builder: (context) => Jobdetails(
+
+                                    // '${GetData.data[index]['job_location']}',
+                                    // ' ${GetData.data[index]['job_title']}',
+                                    // '${GetData.data[index]['job_type']}',
+                                    // '${GetData.data[index]['description']}'
+                                  '',
+                                  '',
+                                      '',
+                                  ''
+
+                                )));
                       },
                     ),
                   ]),
