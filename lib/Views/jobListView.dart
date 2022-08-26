@@ -19,7 +19,6 @@ class _jobListViewState extends State<jobListView>{
   initState() {
     GeTJob().GetData();
     super.initState();
-    print(" The InitState is Called");
   }
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
