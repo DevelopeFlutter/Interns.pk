@@ -3,6 +3,7 @@ import 'package:interns/Services/Auth_Services/signUp.dart';
 import 'package:interns/Theme/app_Colors.dart';
 import 'package:interns/Views/job_details.dart';
 import 'package:interns/backen_json/lates_post.dart';
+import 'package:interns/utils/loader.dart';
 import '../Authentication/Controller/Job_Get_Controller.dart';
 import 'package:get/get.dart';
 class jobListView extends StatefulWidget {
@@ -12,16 +13,17 @@ class jobListView extends StatefulWidget {
   @override
   State<jobListView> createState() => _jobListViewState();
 }
-class _jobListViewState extends State<jobListView> {
+class _jobListViewState extends State<jobListView>{
   TextEditingController nameController = TextEditingController();
-  // @override
-  //  initState() {
-  //    GeTJob().GetJob();
-  //   super.initState();
-  //   print(" The InitState is Called");
-  // }
+  @override
+  initState() {
+    GeTJob().GetData();
+    super.initState();
+    print(" The InitState is Called");
+  }
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+
     JobsList GetData = Get.find<JobsList>();
     return Scaffold(
         resizeToAvoidBottomInset: false,

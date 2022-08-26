@@ -16,7 +16,7 @@ class JobApplied extends StatefulWidget {
 class _JobAppliedState extends State<JobApplied> {
   @override
   void initState() {
-    GeTJob().GetJob();
+    GeTJob().GetData();
     super.initState();
     // print("${GetData.Getdata()} The InitState is Called");
   }

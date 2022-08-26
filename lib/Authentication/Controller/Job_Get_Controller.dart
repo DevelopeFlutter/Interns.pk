@@ -3,8 +3,9 @@ class JobsList extends GetxController{
   String? message;
   int? status;
    List<dynamic> data = [];
-   List Getdata(){
-     // print(data);
+
+  List Getdata(){
+
     return data;
   }
  dynamic setData(String message, int status, List<dynamic> data){

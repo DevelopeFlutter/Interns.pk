@@ -10,7 +10,6 @@ import 'package:get/get.dart';
 void main() {
   runApp(const MyApp()
   );
-  //GeTJob().GetJob();
 
 }
 class MyApp extends StatelessWidget {
@@ -20,10 +19,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       home:
-      //ForFutureBuilder(),
-      //JObPost(),
-      homePageView(),
-     // const remove_job(),
+       homePageView(),
       builder: EasyLoading.init(),
 
     );

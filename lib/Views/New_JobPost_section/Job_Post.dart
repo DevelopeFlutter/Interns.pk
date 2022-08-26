@@ -760,8 +760,8 @@ class _JobPostState extends State<JobPost> {
                           MaterialStateProperty.all(appcolors.greenishText),
                     ),
                     onPressed: () {
-                       //JobPostForm();
-                      GeTJob().GetJob();
+                       JobPostForm();
+                      // GeTJob().GetJob();
                     },
                     child: const Text(
                       'Post',

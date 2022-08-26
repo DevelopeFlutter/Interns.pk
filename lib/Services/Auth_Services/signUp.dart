@@ -3,6 +3,7 @@ import 'package:interns/Authentication/Controller/Job_Get_Controller.dart';
 import 'package:interns/Network/API_manger.dart';
 import 'package:interns/Network/APIs_call.dart';
 import 'package:get/get.dart';
+import 'package:interns/utils/loader.dart';
 Future signup(
     String Name, String Email, String Password, String ConfirmPassword) async {
   // ignore: prefer_typing_uninitialized_variables
@@ -100,11 +101,12 @@ Future jobPost(
 class GeTJob {
   final JobsList  GetTheJob = Get.put(JobsList());
   dynamic Data;
-   GetJob() async {
+   GetData() async {
     var response = await API().get(api_manager.GETJOB);
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
       GetTheJob.setData(data['message'], data['status'], data['data']);
+
 
 
     }

@@ -1,10 +1,13 @@
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:interns/Theme/app_Colors.dart';
 
 class PopupLoader{
-  static void show([indicator = EasyLoadingIndicatorType.dualRing]){
+  static void show([indicator = EasyLoadingIndicatorType.fadingFour]){
     EasyLoading.instance
         ..indicatorType = indicator
+      ..displayDuration = Duration(microseconds: 2000)
         ..maskType = EasyLoadingMaskType.clear;
+
     EasyLoading.show();
   }
   static void hide() {
