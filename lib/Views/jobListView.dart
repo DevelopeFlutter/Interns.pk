@@ -3,7 +3,6 @@ import 'package:interns/Services/Auth_Services/signUp.dart';
 import 'package:interns/Theme/app_Colors.dart';
 import 'package:interns/Views/job_details.dart';
 import 'package:interns/backen_json/lates_post.dart';
-import 'package:interns/utils/loader.dart';
 import '../Authentication/Controller/Job_Get_Controller.dart';
 import 'package:get/get.dart';
 class jobListView extends StatefulWidget {
