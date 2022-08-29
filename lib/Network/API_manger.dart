@@ -4,4 +4,6 @@ class api_manager{
   static const LOGIN = "login";
   static const  JOBPOST= 'company/jobpost';
   static const GETJOB = "getJob";
+  static const REMOVEJOB = "removepost/";
+
 }

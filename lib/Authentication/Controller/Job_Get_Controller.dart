@@ -2,10 +2,8 @@ import 'package:get/get.dart';
 class JobsList extends GetxController{
   String? message;
   int? status;
-   List<dynamic> data = [];
-
-  List Getdata(){
-
+   List<dynamic> data=[];
+  List Getdata() {
     return data;
   }
  dynamic setData(String message, int status, List<dynamic> data){

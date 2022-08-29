@@ -61,10 +61,7 @@ class _Add_DescriptionState extends State<Add_Description> {
                       ForIcon = true;
                     });
                   }
-
                   DescriptionController.text = value;
-                  // print(DescriptionController.text);
-
                   DescriptionController.selection = TextSelection.fromPosition(
                       TextPosition(offset: DescriptionController.text.length));
 
@@ -91,9 +88,9 @@ class _Add_DescriptionState extends State<Add_Description> {
                             color: appcolors.greenishText,
                           ))
                       : null,
-                  hintText: "Add skills and requirements you're looking for.",contentPadding: const EdgeInsets.only(right: 10
+                  hintText: "Add skills and requirements you're looking for.",
 
-                )
+
                 ),
               ),
             ],

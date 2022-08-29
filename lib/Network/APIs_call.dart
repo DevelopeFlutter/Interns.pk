@@ -33,4 +33,20 @@ class API{
       print(['API exception get', e.toString()]);
     }
   }
-}
+  Future Delete( apiurl,id)async{
+    print("This is Called");
+    if(!await this._networkStatus())return Future(() {});
+    try{
+      return https.delete(
+        Uri.parse(api_manager.BASE_URL + apiurl + id),
+        body:id,
+        headers:{"Content-Type": "application/x-www-form-urlencoded"},
+        encoding:Encoding.getByName("utf-8"),
+      );
+    }catch(e){
+      print(['API exception get', e.toString()]);
+
+    }
+  }
+  }
+

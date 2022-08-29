@@ -105,10 +105,41 @@ class GeTJob {
     var response = await API().get(api_manager.GETJOB);
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
+      //Get.to
       GetTheJob.setData(data['message'], data['status'], data['data']);
-
-
-
+      print("Get Function is Called");
     }
   }
+  }
+Future DeleteJob(
+    String id,
+
+    ) async {
+  var _content;
+  bool _error = false;
+  String _errorMessage = "Unable to process request, please try later!";
+  try {
+    // var data =
+    //     "id=$id";
+    // print(data);
+    var response = await API().Delete(api_manager.REMOVEJOB,id);
+    if (response.statusCode == 200) {
+      GeTJob().GetData();
+      print(response.statusCode);
+      _error = false;
+      _content = jsonDecode(response.body);
+      print('${jsonDecode(response.body)} ==================================');
+    } else {
+      _error = true;
+      _content = jsonDecode(response.body);
+    }
+  } catch (e) {
+    _error = true;
+    _content = _errorMessage;
+  }
+  return {
+    "error": _error,
+    "content": _content,
+  };
 }
+

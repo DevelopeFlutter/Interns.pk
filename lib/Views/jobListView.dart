@@ -20,10 +20,15 @@ class _jobListViewState extends State<jobListView>{
     GeTJob().GetData();
     super.initState();
   }
+
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-
+    Future.delayed( Duration(seconds: 5), () {
+      JobsList GetData = Get.find<JobsList>();
+      print('One second has passed.'); // Prints after 1 second.
+    });
     JobsList GetData = Get.find<JobsList>();
+
     return Scaffold(
         resizeToAvoidBottomInset: false,
         body: Column(children: [

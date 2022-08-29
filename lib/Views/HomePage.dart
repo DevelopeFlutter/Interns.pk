@@ -27,7 +27,6 @@ class _homePageViewState extends State<homePageView> {
     super.initState();
     print(" The InitState is Called");
   }
-
   @override
   Widget build(BuildContext context) {
     return const BottomBar();
@@ -40,12 +39,18 @@ class hompePageSecondPart extends StatefulWidget {
   State<hompePageSecondPart> createState() => _hompePageSecondPartState();
 }
 
-JobsList GetData = Get.find<JobsList>();
+
+
 
 class _hompePageSecondPartState extends State<hompePageSecondPart> {
+
+
   TextEditingController companyNameController = TextEditingController();
   TextEditingController placeNameController = TextEditingController();
+  JobsList GetData = Get.find<JobsList>();
+
   Widget build(BuildContext context) {
+
     return Scaffold(
         body: SingleChildScrollView(
             child: Column(children: [
@@ -214,7 +219,7 @@ class _hompePageSecondPartState extends State<hompePageSecondPart> {
       ),
       ListView.builder(
         shrinkWrap: true,
-        // physics: const ScrollPhysics(),
+         physics: const ScrollPhysics(),
         itemCount: 5,
         itemBuilder: (BuildContext context, int index) => Padding(
           padding:
@@ -308,19 +313,20 @@ class _hompePageSecondPartState extends State<hompePageSecondPart> {
       ),
       !GetData.data.isEmpty
           ? ListView.builder(
-              shrinkWrap: true,
+          physics: const ScrollPhysics(),
+          shrinkWrap: true,
               scrollDirection: Axis.vertical,
               itemCount: GetData.data.length,
               itemBuilder: (BuildContext context, int index) {
                 return Container(
-                  height: 120,
+                  height:120,
                   width: double.infinity,
                   decoration: const BoxDecoration(
-                    border: Border(
-                      bottom: BorderSide(
+                    border:Border(
+                      bottom:BorderSide(
                         color: Colors.black12,
                         style: BorderStyle.solid,
-                        width: 3,
+                        width:3,
                       ),
                     ),
                   ),
@@ -394,7 +400,7 @@ class _hompePageSecondPartState extends State<hompePageSecondPart> {
                   ]),
                 );
               })
-          : Text(
+          : const Text(
               "No Data Found",
               style: TextStyle(fontSize: 36),
             ),
