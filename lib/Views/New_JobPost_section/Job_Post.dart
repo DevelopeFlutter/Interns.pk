@@ -22,7 +22,8 @@ class _JobPostState extends State<JobPost> {
     try {
       PopupLoader.show();
       var authResponse = await jobPost(
-        controller1.AddCompany.toString(),
+       controller1.AddCompany.toString(),
+       // '',
         controller1.JobTitle.toString(),
         controller1.JobLocation.toString(),
         controller1.AddDescription.toString(),
@@ -30,7 +31,6 @@ class _JobPostState extends State<JobPost> {
         controller1.SetJobTypeValue.toString(),
           );
       PopupLoader.hide();
-      print(authResponse['content']);
        print('${controller1.JobTitle.toString()} this is the job Jobtitle ');
       print('${controller1.JobLocation.toString()} this is the job JobLocation');
       print('${controller1.AddCompany.toString()} this is the job AddCompany ');
@@ -42,7 +42,7 @@ class _JobPostState extends State<JobPost> {
         ShowMessage().showMessage(context, 'Successfully JobPost');
         // Navigator.push(context,
         //     MaterialPageRoute(builder:(context) => const homePageView()));
-        null;
+
       } else {
         ShowMessage().showErrorMessage(context, 'Some Error');
         print("message");
@@ -762,6 +762,7 @@ class _JobPostState extends State<JobPost> {
                     onPressed: () {
                        JobPostForm();
                       // GeTJob().GetJob();
+                      print("The Onpressed is Called");
                     },
                     child: const Text(
                       'Post',

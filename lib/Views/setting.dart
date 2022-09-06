@@ -192,7 +192,7 @@ class _SettingViewState extends State<SettingView> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => Removejob()));
+                              builder: (context) =>Removejob()));
                     },
                     child: const Text(
                       "Delete Posted Applications",

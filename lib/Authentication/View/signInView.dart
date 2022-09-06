@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:interns/Authentication/Controller/User_Profile_Controller.dart';
 import 'package:interns/Services/Auth_Services/signUp.dart';
 import 'package:interns/Theme/app_Colors.dart';
 import 'package:interns/Authentication/View/signUpView.dart';
@@ -23,13 +24,13 @@ class _signInViewState extends State<signInView> {
     try{
       PopupLoader.show();
       var authResponse = await Login(
-          controller1.Email.value,
-          controller1.Password.value,
+          controller1.Email,
+          controller1.Password,
       );
       PopupLoader.hide();
       print(authResponse['content']);
 
-      if(authResponse["content"]['status'] == 200){
+      if(authResponse['content']['status'] == 200){
         ShowMessage().showMessage(context, 'Successfully Login');
         Navigator.push(context,
             MaterialPageRoute(builder: (context) => const homePageView()));
@@ -108,7 +109,7 @@ class _signInViewState extends State<signInView> {
                     boolTitleShowHide: false,
                     returnDatacall: (val) {
                       setState(() {
-                        controller1.Email.value = val;
+                        controller1.Email =val;
                       });
                     }),
 
@@ -119,35 +120,12 @@ class _signInViewState extends State<signInView> {
                 boolTitleShowHide: true,
                 returnDatacall: (val) {
                   setState(() {
-                    controller1.Password.value = val;
+                    controller1.Password = val;
                   });
                 }),
               ],
             ),
           ),
-          // const Padding(
-          //   padding: EdgeInsets.only(left: 12, right: 12),
-          //   child: TextField(
-          //     decoration: InputDecoration(
-          //         enabledBorder: UnderlineInputBorder(
-          //             borderSide: BorderSide(color: Colors.black87, width: 2)),
-          //         labelText: 'Email',
-          //         labelStyle: TextStyle(color: Colors.black87, fontSize: 18)),
-          //   ),
-          // ),
-          // const SizedBox(
-          //   height: 25,
-          // ),
-          // const Padding(
-          //   padding: EdgeInsets.only(left: 12, right: 12),
-          //   child: TextField(
-          //     decoration: InputDecoration(
-          //         enabledBorder: UnderlineInputBorder(
-          //             borderSide: BorderSide(color: Colors.black87, width: 2)),
-          //         labelText: 'Password',
-          //         labelStyle: TextStyle(color: Colors.black87, fontSize: 18)),
-          //   ),
-          // ),
           const Padding(
             padding: EdgeInsets.only(top: 20, bottom: 30, right: 20),
             child: Align(

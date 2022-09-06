@@ -16,11 +16,11 @@ class JobApplied extends StatefulWidget {
 class _JobAppliedState extends State<JobApplied> {
   @override
   void initState() {
-    GeTJob().GetData();
+    getData();
     super.initState();
-    // print("${GetData.Getdata()} The InitState is Called");
-  }
+ }
   JobsList GetData = Get.find<JobsList>();
+
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(

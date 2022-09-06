@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:interns/Authentication/Controller/Auth_Controller.dart';
 import 'package:interns/Theme/app_Colors.dart';
 import 'package:interns/Views/Bottom_Bar.dart';
 import 'package:interns/Views/cityListView.dart';
@@ -8,22 +9,23 @@ import 'package:interns/Authentication/View/signInView.dart';
 import 'package:interns/Authentication/View/signUpView.dart';
 import 'package:interns/backen_json/brows_job_by_city.dart';
 import 'package:interns/backen_json/lates_post.dart';
-
 import '../Authentication/Controller/Job_Get_Controller.dart';
 import '../Services/Auth_Services/signUp.dart';
 import 'package:get/get.dart';
-
+import '../utils/loader.dart';
+import '../utils/showMessage.dart';
 class homePageView extends StatefulWidget {
   const homePageView({Key? key}) : super(key: key);
-
   @override
   State<homePageView> createState() => _homePageViewState();
 }
-
 class _homePageViewState extends State<homePageView> {
+  bool showLoader = true;
   @override
   initState() {
-    GeTJob().GetData();
+    // TestFunction.getdata();
+    getData();
+   // GetJobForm();
     super.initState();
     print(" The InitState is Called");
   }
@@ -32,25 +34,29 @@ class _homePageViewState extends State<homePageView> {
     return const BottomBar();
   }
 }
-
 class hompePageSecondPart extends StatefulWidget {
   const hompePageSecondPart({Key? key}) : super(key: key);
   @override
   State<hompePageSecondPart> createState() => _hompePageSecondPartState();
 }
-
-
-
-
 class _hompePageSecondPartState extends State<hompePageSecondPart> {
-
-
   TextEditingController companyNameController = TextEditingController();
   TextEditingController placeNameController = TextEditingController();
-  JobsList GetData = Get.find<JobsList>();
-
   Widget build(BuildContext context) {
+    // PopupLoader.show();
+    JobsList GetData = Get.find<JobsList>();
+     Authcontroller getData = Get.put (Authcontroller());
 
+    Authcontroller Getdata = Get.find<Authcontroller>();
+     // print('${Getdata.data} Data=====9=====');
+     var datavar = GetData.data;
+     if(Getdata.data?.length==0){
+       datavar = Getdata.data;
+     }
+     else{
+       print("Nothing work");
+     }
+    // PopupLoader.hide();
     return Scaffold(
         body: SingleChildScrollView(
             child: Column(children: [
@@ -142,20 +148,23 @@ class _hompePageSecondPartState extends State<hompePageSecondPart> {
             const SizedBox(
               height: 30,
             ),
-            GestureDetector(
-                child: const Text(
-                  'Create an account',
-                  style: TextStyle(
-                      color: appcolors.greenishText,
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold),
-                ),
-                onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const SignUpView()));
-                }),
+           if (getData.data ==null) Column(
+              children: [
+                GestureDetector(
+                    child: const Text(
+                      'Create an account',
+                       style: TextStyle(
+                          color: appcolors.greenishText,
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const SignUpView()));
+                    }),
+
             const SizedBox(
               height: 20,
             ),
@@ -171,31 +180,29 @@ class _hompePageSecondPartState extends State<hompePageSecondPart> {
                     ),
                   ),
                 ),
-                Column(
-                  children: [
-                    GestureDetector(
-                      child: const Padding(
-                        padding: EdgeInsets.only(left: 6),
-                        child: Text(
-                          'Sign in',
-                          style: TextStyle(
-                            color: appcolors.greenishText,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16,
-                          ),
-                        ),
+                GestureDetector(
+                  child: const Padding(
+                    padding: EdgeInsets.only(left: 6),
+                    child: Text(
+                      'Sign in',
+                      style: TextStyle(
+                        color: appcolors.greenishText,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
                       ),
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => signInView()));
-                      },
                     ),
-                  ],
+                  ),
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => signInView()));
+                  },
                 )
-              ],
-            )
+                ],
+            ),
+    ]
+            ) else Container()
           ],
         ),
       ),
@@ -400,7 +407,7 @@ class _hompePageSecondPartState extends State<hompePageSecondPart> {
                   ]),
                 );
               })
-          : const Text(
+          :  const Text(
               "No Data Found",
               style: TextStyle(fontSize: 36),
             ),

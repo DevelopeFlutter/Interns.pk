@@ -6,7 +6,6 @@ import 'package:interns/Views/New_JobPost_section/Job_Post_TextFields/Reuseable_
 
 class JobPost_title extends StatefulWidget {
   const JobPost_title({Key? key}) : super(key: key);
-
   @override
   State<JobPost_title> createState() => _JobPost_titleState();
 }
@@ -15,9 +14,21 @@ class _JobPost_titleState extends State<JobPost_title> {
   TextEditingController JobTitleController = TextEditingController();
   JobPostController controller1 = Get.put(JobPostController());
 
+  @override
+  void initState() {
+    super.initState();
+    JobTitleController = new TextEditingController(text: '');
+  }
+
+
   bool ForIcon = false;
   @override
   Widget build(BuildContext context) {
+    print('${controller1.JobTitleVal(JobTitleController.text)}; job title');
+    print('${controller1.JobTitle}; job title');
+
+    // JobTitleController.text = "ffhdhhbnh";
+
     return Scaffold(
         appBar: AppBar(
           leading: IconButton(
@@ -45,44 +56,52 @@ class _JobPost_titleState extends State<JobPost_title> {
           ),
           backgroundColor: Colors.white,
         ),
-        body: Column(children: [
-          SizedBox(
-          height: 200,
-          child: Column(
-            children: [
-              TextField(
-                onChanged: (value) {
-                  if (value.length <= 0) {
-                    setState(() {
-                      ForIcon = false;
-                    });
-                  } else {
-                    setState(() {
-                      ForIcon = true;
-                    });
-                  }
-                  JobTitleController.text = value;
-                  JobTitleController.selection = TextSelection.fromPosition(
-                      TextPosition(offset:  JobTitleController.text.length));
-                  setState(() {
-                    controller1.JobTitleVal(JobTitleController.text);
-                  });
-                },
-                controller: JobTitleController,
-                decoration: InputDecoration(
-                  suffixIcon: ForIcon ?IconButton(onPressed: (){
-                    JobTitleController.clear();
-                    setState(() {
-                      ForIcon = false;
-                    });
-                  }, icon: const Icon(Icons.close,color: appcolors.greenishText,)):null,
-                  hintText:  "Search...",
-
-                ),
+        body: Column(
+          children: [
+            SizedBox(
+              height: 200,
+              child: Column(
+                children: [
+                  TextField(
+                    onChanged: (value) {
+                      if (value.length <= 0) {
+                        setState((){
+                          ForIcon = false;
+                        });
+                      } else {
+                        setState(() {
+                          ForIcon = true;
+                        });
+                      }
+                      JobTitleController.text = value;
+                      JobTitleController.selection = TextSelection.fromPosition(
+                          TextPosition(offset: JobTitleController.text.length));
+                      setState(() {
+                        controller1.JobTitleVal(JobTitleController.text);
+                      });
+                    },
+                    controller: JobTitleController,
+                    decoration: InputDecoration(
+                      suffixIcon: ForIcon
+                          ? IconButton(
+                              onPressed: () {
+                                JobTitleController.clear();
+                                setState(() {
+                                  ForIcon = false;
+                                });
+                              },
+                              icon: const Icon(
+                                Icons.close,
+                                color: appcolors.greenishText,
+                              ))
+                          : null,
+                      hintText: "Search...",
+                    ),
+                  ),
+                ],
               ),
-            ],
-          ),
-        )
-        ],));
+            )
+          ],
+        ));
   }
 }

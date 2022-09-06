@@ -13,10 +13,10 @@ class JobPost_Location extends StatefulWidget {
 }
 
 class _JobPost_LocationState extends State<JobPost_Location> {
-  TextEditingController JobLocationController = TextEditingController();
+  TextEditingController JobLocationController = TextEditingController(text: '');
   JobPostController controller1 = Get.put(JobPostController());
 
-  bool ForIcon = false;
+  bool  ForIcon = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(

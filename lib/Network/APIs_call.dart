@@ -48,5 +48,35 @@ class API{
 
     }
   }
+  Future Profile( apiurl,Data)async{
+    print("This is Called");
+    if(!await this._networkStatus())return Future(() {});
+    try{
+      return https.post(
+        Uri.parse(api_manager.BASE_URL+apiurl),
+        body:Data,
+        headers:{"Content-Type":"application/x-www-form-urlencoded"},
+        encoding:Encoding.getByName("utf-8"),
+      );
+    }catch(e){
+      print(['API exception get', e.toString()]);
+
+    }
+  }
+  Future feedBack( apiurl,Data)async{
+    print("This is Called Feedback");
+    if(!await _networkStatus())return Future(() {});
+    try{
+      return https.post(
+        Uri.parse(api_manager.BASE_URL+apiurl),
+        body:Data,
+        headers:{"Content-Type":"application/x-www-form-urlencoded"},
+        encoding:Encoding.getByName("utf-8"),
+      );
+    }catch(e){
+      print(['API exception get', e.toString()]);
+
+    }
+  }
   }
 

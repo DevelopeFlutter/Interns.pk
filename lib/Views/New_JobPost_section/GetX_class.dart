@@ -9,7 +9,7 @@ class JobPostController extends GetxController{
   var SetWorkPlacValue;
 void JobTypeValue( set){
 SetJobTypeValue = set;
-update();
+// update();
 print('$SetJobTypeValue This is the JobType Value');
 }
 void WorkPlaceTypeValue(set){
@@ -20,7 +20,7 @@ void WorkPlaceTypeValue(set){
     JobLocation = set;
     print("Location:"+JobLocation);
   }
-  void  JobTitleVal(var set) {
+  dynamic  JobTitleVal(var set) {
     JobTitle = set;
     print("job title:"+JobTitle);
   }

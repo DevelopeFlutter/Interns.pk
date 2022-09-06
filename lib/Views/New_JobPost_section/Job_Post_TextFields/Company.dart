@@ -14,7 +14,7 @@ class Add_Company extends StatefulWidget {
 }
 
 class _Add_CompanyState extends State<Add_Company> {
-  TextEditingController CompanyController = TextEditingController();
+  TextEditingController CompanyController = TextEditingController(text: '');
   JobPostController controller1 = Get.put(JobPostController());
 
   bool ForIcon = false;
@@ -70,7 +70,7 @@ class _Add_CompanyState extends State<Add_Company> {
                   });
                 },
                 controller: CompanyController,
-                //Controller,
+
                 decoration: InputDecoration(
                   suffixIcon: ForIcon ?IconButton(onPressed: (){
                     CompanyController.clear();

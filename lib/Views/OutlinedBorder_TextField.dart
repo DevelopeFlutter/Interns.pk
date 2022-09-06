@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:interns/Theme/app_Colors.dart';
 class OutlinedTextField extends StatelessWidget {
-  OutlinedTextField({required this.HintText,   Key? key}) : super(key: key);
+  OutlinedTextField(  {required this.HintText, required this.Controller });
   String HintText;
+ TextEditingController Controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: 45,
       width: double.infinity,
-      child: TextField(
+      child: TextFormField(
+        controller:Controller ,
         textAlign: TextAlign.center,
         keyboardType: TextInputType.text,
         decoration: InputDecoration(
@@ -28,8 +30,8 @@ class OutlinedTextField extends StatelessWidget {
     );
   }
 }
-class ConTainer extends StatelessWidget {
-   ConTainer({ required this.CenterText,  Key? key}) : super(key: key);
+class UserProfileContainer extends StatelessWidget {
+   UserProfileContainer({ required this.CenterText,  Key? key}) : super(key: key);
     String CenterText;
 
   @override

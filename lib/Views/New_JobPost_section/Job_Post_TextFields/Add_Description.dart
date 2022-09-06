@@ -11,12 +11,13 @@ class Add_Description extends StatefulWidget {
 }
 
 class _Add_DescriptionState extends State<Add_Description> {
-  TextEditingController DescriptionController = TextEditingController();
+  TextEditingController DescriptionController = TextEditingController(text: 'gvgcg');
   JobPostController controller1 = Get.put(JobPostController());
 
   bool ForIcon = false;
   @override
   Widget build(BuildContext context) {
+    print(DescriptionController.text);
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -51,6 +52,7 @@ class _Add_DescriptionState extends State<Add_Description> {
           child: Column(
             children: [
               TextField(
+
                 onChanged: (value) {
                   if (value.length <= 0) {
                     setState(() {
@@ -64,7 +66,6 @@ class _Add_DescriptionState extends State<Add_Description> {
                   DescriptionController.text = value;
                   DescriptionController.selection = TextSelection.fromPosition(
                       TextPosition(offset: DescriptionController.text.length));
-
                   setState(() {
                     controller1.AddDescriptionVal(DescriptionController.text);
                   });

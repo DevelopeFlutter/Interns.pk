@@ -5,7 +5,7 @@ class PopupLoader{
   static void show([indicator = EasyLoadingIndicatorType.fadingFour]){
     EasyLoading.instance
         ..indicatorType = indicator
-      ..displayDuration = Duration(microseconds: 2000)
+      ..displayDuration = Duration(microseconds: 5000)
         ..maskType = EasyLoadingMaskType.clear;
 
     EasyLoading.show();

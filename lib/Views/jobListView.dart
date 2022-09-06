@@ -16,26 +16,22 @@ class _jobListViewState extends State<jobListView>{
   TextEditingController nameController = TextEditingController();
   @override
   initState() {
-    GeTJob().GetData();
+    getData();
     super.initState();
   }
+  JobsList GetData = Get.find<JobsList>();
 
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    Future.delayed( Duration(seconds: 5), () {
-      JobsList GetData = Get.find<JobsList>();
-      print('One second has passed.'); // Prints after 1 second.
-    });
     JobsList GetData = Get.find<JobsList>();
-
     return Scaffold(
         resizeToAvoidBottomInset: false,
         body: Column(children: [
           Container(
-            height: 80,
-            width: double.infinity,
-            color: appcolors.greenishText,
-            child: Row(
+            height:80,
+            width:double.infinity,
+            color:appcolors.greenishText,
+            child:Row(
               children: [
                 Padding(
                   padding: const EdgeInsets.only(left: 0, right: 15, top: 25),

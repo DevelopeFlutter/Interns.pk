@@ -11,8 +11,17 @@ var confirmPassword = "".obs;
 
 class Authcontroller extends GetxController{
   //Login Controller!
-  RxBool isObsecureText = true.obs;
-  var Email = "".obs;
-  var Password = "".obs;
+  // RxBool isObsecureText = true.obs;
+  var Email ;
+  var Password ;
+  List  userEmail =[];
+  var data;
+    setData( var data ){
+    this.data = data;
+    print('${data} This is the User Email');
+  }
+  SimplePrint(){
 
+      print("${data['_id']}AuthController class");
+  }
 }

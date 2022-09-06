@@ -32,7 +32,7 @@ class _BottomBarState extends State<BottomBar> {
      //const BasicInformation(),
   ];
 
-  void _onItemTapped(int index) {
+  void _onItemTapped(int index){
     setState(() {
       _selectedIndex = index;
     });
