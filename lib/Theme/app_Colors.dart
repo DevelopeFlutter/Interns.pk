@@ -1,3 +1,5 @@
+// ignore_for_file: camel_case_types, constant_identifier_names
+
 import 'package:flutter/material.dart';
 
 class appcolors {
@@ -24,7 +26,7 @@ class HexColor extends Color {
   static int _getColorFromHex(String hexColor) {
     hexColor = hexColor.toUpperCase().replaceAll('#', '');
     if (hexColor.length == 6) {
-      hexColor = 'FF' + hexColor;
+      hexColor = 'FF$hexColor';
     }
     return int.parse(hexColor, radix: 16);
   }

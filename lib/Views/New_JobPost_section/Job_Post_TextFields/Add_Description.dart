@@ -1,7 +1,9 @@
+// ignore_for_file: depend_on_referenced_packages, camel_case_types, non_constant_identifier_names, file_names
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:interns/Views/New_JobPost_section/GetX_class.dart';
 import 'package:interns/Theme/app_Colors.dart';
+import '../../../Authentication/Controller/GetX_class_For_JobPost.dart';
 
 class Add_Description extends StatefulWidget {
   const Add_Description({Key? key}) : super(key: key);
@@ -11,13 +13,11 @@ class Add_Description extends StatefulWidget {
 }
 
 class _Add_DescriptionState extends State<Add_Description> {
-  TextEditingController DescriptionController = TextEditingController(text: 'gvgcg');
-  JobPostController controller1 = Get.put(JobPostController());
-
+  TextEditingController DescriptionController = TextEditingController();
+  JobPostController getDescriptionData = Get.put(JobPostController());
   bool ForIcon = false;
   @override
   Widget build(BuildContext context) {
-    print(DescriptionController.text);
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -37,7 +37,7 @@ class _Add_DescriptionState extends State<Add_Description> {
                 "Description",
                 style: TextStyle(
                     fontWeight: FontWeight.w500,
-                    fontSize: 18,
+                    fontSize: 19,
                     color: Colors.black),
               )
             ],
@@ -45,58 +45,44 @@ class _Add_DescriptionState extends State<Add_Description> {
         ),
         backgroundColor: Colors.white,
       ),
-      body: Padding(
-        padding: const EdgeInsets.only(top: 0),
-        child: SizedBox(
-          height: 200,
-          child: Column(
-            children: [
-              TextField(
-
-                onChanged: (value) {
-                  if (value.length <= 0) {
-                    setState(() {
-                      ForIcon = false;
-                    });
-                  } else {
-                    setState(() {
-                      ForIcon = true;
-                    });
-                  }
-                  DescriptionController.text = value;
-                  DescriptionController.selection = TextSelection.fromPosition(
-                      TextPosition(offset: DescriptionController.text.length));
-                  setState(() {
-                    controller1.AddDescriptionVal(DescriptionController.text);
-                  });
-                },
-                controller: DescriptionController,
-                textAlign: TextAlign.right,
-
-                decoration: InputDecoration(
-                  border: InputBorder.none,
-                  suffixIcon: ForIcon
-                      ? IconButton(
-                          onPressed: () {
-                            DescriptionController.clear();
-
-                            setState(() {
-                              ForIcon = false;
-                            });
-                          },
-                          icon: const Icon(
-                            Icons.close,
-                            color: appcolors.greenishText,
-                          ))
-                      : null,
-                  hintText: "Add skills and requirements you're looking for.",
-
-
-                ),
-              ),
-            ],
-          ),
-        ),
+      body: TextField(
+        onChanged: (value) {
+          if (value.isEmpty) {
+            setState(() {
+              ForIcon = false;
+            });
+          } else {
+            setState(() {
+              ForIcon = true;
+            });
+          }
+          DescriptionController.text = value;
+          DescriptionController.selection = TextSelection.fromPosition(
+              TextPosition(offset: DescriptionController.text.length));
+          setState(() {
+            getDescriptionData
+                .addDescriptionVal(DescriptionController.text);
+          });
+        },
+        controller: DescriptionController,
+        decoration: InputDecoration(
+            border: InputBorder.none,
+            suffixIcon: ForIcon
+                ? IconButton(
+                    onPressed: () {
+                      DescriptionController.clear();
+                      setState(() {
+                        ForIcon = false;
+                      });
+                    },
+                    icon: const Icon(
+                      Icons.close,
+                      color: appcolors.greenishText,
+                    ))
+                : null,
+            hintText: "Add skills and requirements you're looking for.",
+            hintStyle: const TextStyle(fontSize: 13,fontWeight: FontWeight.w400),
+            contentPadding: const EdgeInsets.only(left: 10, top: 15)),
       ),
     );
   }

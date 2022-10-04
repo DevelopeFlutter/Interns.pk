@@ -16,7 +16,8 @@ class JobApplied extends StatefulWidget {
 class _JobAppliedState extends State<JobApplied> {
   @override
   void initState() {
-    getData();
+    // getData();
+
     super.initState();
  }
   JobsList GetData = Get.find<JobsList>();
@@ -49,20 +50,22 @@ class _JobAppliedState extends State<JobApplied> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Column(
+                          crossAxisAlignment: CrossAxisAlignment.baseline,
+                          textBaseline: TextBaseline.ideographic,
                           children:  [
                              Padding(
-                              padding: EdgeInsets.only(right: 34),
+                              padding: const EdgeInsets.only(right: 34),
                               child: Text(''
                                   '${GetData.data[index]['job_title']}'
                                   ''),
                             ),
                             Padding(
                               padding: const EdgeInsets.only(top: 8.0, right: 80),
-                              child: Text("SAU-Tech",style: AppTextStyle.WithOpacityBlackColor,),
+                              child: Text("${GetData.data[index]['company_name']}",style: AppTextStyle.WithOpacityBlackColor,),
                             ),
-                            const Padding(
-                              padding: EdgeInsets.only(top: 8.0, right: 40),
-                              child: Text("Lahore, Pakistan"),
+                             Padding(
+                              padding: const EdgeInsets.only(top: 8.0, right: 40),
+                              child: Text("${GetData.data[index]['job_location']}"),
                             )
                           ],
                         ),

@@ -7,26 +7,26 @@ class ShowMessage{
       String message,
       ){
     return showToast(
-    '$message',
+    message,
     context:context,
-  duration: Duration(seconds:3),
+  duration: const Duration(seconds:3),
   animation: StyledToastAnimation.slideToBottomFade,
   backgroundColor: Colors.green,
   dismissOtherToast: true,
-  textStyle: TextStyle(color:appcolors.white),
+  textStyle: const TextStyle(color:appcolors.white),
   position: StyledToastPosition.bottom,
     );
   }
   showErrorMessage(BuildContext context, String message) {
     return showToast(
-      '$message',
+      message,
       // duration: Duration(seconds: 2),
       context: context,
       // animation: StyledToastAnimation.slideFromTopFade,
       animation: StyledToastAnimation.slideToBottomFade,
       backgroundColor: Colors.red,
       dismissOtherToast: true,
-      textStyle: TextStyle(color: appcolors.white),
+      textStyle: const TextStyle(color: appcolors.white),
       position: StyledToastPosition.bottom,
     );
   }

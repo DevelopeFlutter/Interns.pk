@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:interns/Theme/app_Colors.dart';
 
@@ -49,7 +48,7 @@ class _ResetPasswordState extends State<ResetPassword> {
           const Padding(
             padding: EdgeInsets.only(left: 30,right:30),
             child: Text(
-              "please enetr your registerd email to reset your password. you will recieve a reset password link on your registered email.",
+              "please enter your registerd email to reset your password. you will recieve a reset password link on your registered email.",
          textAlign: TextAlign.justify, ),
           ),
           Padding(
@@ -65,7 +64,6 @@ class _ResetPasswordState extends State<ResetPassword> {
               padding: const EdgeInsets.only(left: 40, top: 20, right: 40),
               child: ElevatedButton(
                 onPressed: () {},
-                child: const Text("Reset Password"),
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all(appcolors.greenishText),
                   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
@@ -74,6 +72,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                     ),
                   ),
                 ),
+                child: const Text("Reset Password"),
               ),
             ),
           ),

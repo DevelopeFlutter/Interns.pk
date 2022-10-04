@@ -71,3 +71,14 @@ dynamic lates_post = [
   },
 
 ];
+dynamic editMyProfile = [{
+  "first_name":"Usman",
+  "Last_name":"Ali",
+  "date_of_birth":"15/7/2001",
+  "email":"us7033237@gmail.com",
+  "phone":"03034117411",
+  "address":"Pakistan pattoki",
+  "country":"Pakistan",
+  "city":"Pattoki"
+
+}];

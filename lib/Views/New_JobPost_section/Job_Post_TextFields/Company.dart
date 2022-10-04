@@ -1,23 +1,22 @@
-import 'package:flutter/material.dart';
+// ignore_for_file: non_constant_identifier_names, camel_case_types, depend_on_referenced_packages
+
 import 'package:flutter/material.dart';
 import 'package:interns/Theme/app_Colors.dart';
-import 'package:interns/Views/New_JobPost_section/GetX_class.dart';
+import 'package:get/get.dart' ;
 import 'package:interns/Views/New_JobPost_section/Job_Post.dart';
-import 'package:get/get.dart';
-import 'package:interns/Views/New_JobPost_section/Job_Post_TextFields/Reuseable_TextField_class.dart';
-
+import '../../../Authentication/Controller/GetX_class_For_JobPost.dart';
+import 'package:flutter_typeahead/flutter_typeahead.dart';
 class Add_Company extends StatefulWidget {
   const Add_Company({Key? key}) : super(key: key);
-
   @override
   State<Add_Company> createState() => _Add_CompanyState();
 }
-
 class _Add_CompanyState extends State<Add_Company> {
   TextEditingController CompanyController = TextEditingController(text: '');
-  JobPostController controller1 = Get.put(JobPostController());
-
+  JobPostController getCompanyData = Get.put(JobPostController());
+  JobPost jobPostObj = const JobPost();
   bool ForIcon = false;
+  static const  companyList = ['Syntaxroot','PureLogic','SoftTech','MatureSoftware',];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,44 +46,61 @@ class _Add_CompanyState extends State<Add_Company> {
           ),
           backgroundColor: Colors.white,
         ),
-        body:  SizedBox(
-          height: 200,
-          child: Column(
-            children: [
-              TextField(
-                onChanged: (value) {
-                  if (value.length <= 0) {
-                    setState(() {
-                      ForIcon = false;
-                    });
-                  } else {
-                    setState(() {
-                      ForIcon = true;
-                    });
-                  }
-                  CompanyController.text = value;
-                  CompanyController.selection = TextSelection.fromPosition(
-                      TextPosition(offset:CompanyController.text.length));
-                  setState(() {
-                    controller1.AddCompanyVal(CompanyController.text);
-                  });
-                },
-                controller: CompanyController,
+        body: TypeAheadFormField(
 
-                decoration: InputDecoration(
-                  suffixIcon: ForIcon ?IconButton(onPressed: (){
-                    CompanyController.clear();
-                    setState(() {
-                      ForIcon = false;
-                    });
-                  }, icon: const Icon(Icons.close,color: appcolors.greenishText,)):null,
-                  hintText:  "Search...",
+    onSuggestionSelected: (String val) {
+    setState(() {
+    CompanyController.text =val;
+    getCompanyData.addCompanyVal(CompanyController.text);
 
-                ),
-              ),
-            ],
+
+    });
+    },
+    itemBuilder: (context, String item) {
+    return ListTile(title: Text(item));
+    },
+    suggestionsCallback: (pattern) => companyList.where((element) =>
+    element.toLowerCase().contains(pattern.toLowerCase())),
+    hideSuggestionsOnKeyboardHide: true,
+    noItemsFoundBuilder: (context) => const Padding(
+    padding: EdgeInsets.only(
+    left: 8,
+    ),
+    child: Text("No item Found"),
+    ),
+textFieldConfiguration: TextFieldConfiguration(
+  autofocus: true,
+            onChanged: (value) {
+            if (value.isEmpty) {
+              setState(() {
+                ForIcon = false;
+              });
+            } else {
+              setState(() {
+                ForIcon = true;
+              });
+            }
+            CompanyController.text = value;
+            CompanyController.selection = TextSelection.fromPosition(
+                TextPosition(offset:CompanyController.text.length));
+            setState(() {
+              getCompanyData.addCompanyVal(CompanyController.text);
+
+
+            });
+          },
+          controller: CompanyController,
+
+          decoration: InputDecoration(
+            suffixIcon: ForIcon ?IconButton(onPressed: (){
+              CompanyController.clear();
+              setState(() {
+                ForIcon = false;
+              });
+            }, icon: const Icon(Icons.close,color: appcolors.greenishText,)):null,
+            hintText:  "Search...",contentPadding: const EdgeInsets.only(left: 15,top: 15)
+
           ),
-        )
-    );
+    )));
   }
 }

@@ -1,9 +1,9 @@
+// ignore_for_file: depend_on_referenced_packages
 import 'package:flutter/material.dart';
 import 'package:interns/Authentication/Controller/Auth_Controller.dart';
 import 'package:get/get.dart';
-
 AuthController controller = Get.put(AuthController());
-Widget textformfeild({
+Widget  textformfeild({
   required isObscureText,
   required boolTitleShowHide,
   required fieldHint,
@@ -24,10 +24,19 @@ Widget textformfeild({
             if (value == null || value.isEmpty) {
               return "$fieldHint  Required";
             }
+            if(fieldHint=="email"||fieldHint=="Email"){
+              if(!value.contains("@")||!value.contains(".com")){
+                return ("Email must be valid");
+              }
+            }
+            if(fieldHint =="ConfirmPassword" || fieldHint =="ConfirmPassword"){
+            if(controller.password.value != controller.confirmPassword.value){
+              return ("Password must be matched");
+            }}
             return null;
           },
           obscureText:
-              isObscureText == true ? controller.isObscureText.value : false,
+              isObscureText ==true?controller.isObscureText.value : false,
           decoration: InputDecoration(
             contentPadding: const EdgeInsets.all(0),
             focusedBorder: const UnderlineInputBorder(
@@ -41,11 +50,6 @@ Widget textformfeild({
               fontWeight: FontWeight.bold,
               fontSize: 16,
             ),
-            // prefixIcon: Icon(
-            //   // Icons.lock_outline,
-            //   // fieldicon,
-            //   color: Colors.black,
-            // ),
             labelStyle: const TextStyle(color: Colors.black54, fontSize: 18),
           ),
           onChanged: (val) {

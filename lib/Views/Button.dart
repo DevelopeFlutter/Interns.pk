@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:interns/Theme/app_Colors.dart';
 
@@ -9,15 +11,6 @@ class Elevatedbutton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: onPressed,
-      child: Text(
-        name!,
-        style: name == 'Close' || name == 'Cancel'
-            ? const TextStyle(color: Colors.black, fontSize: 17)
-            : const TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-              ),
-      ),
       style: ElevatedButton.styleFrom(
         primary: name == 'Cancel' || name == 'Close'
             ? appcolors.white
@@ -27,6 +20,15 @@ class Elevatedbutton extends StatelessWidget {
             ? const BorderSide(color: Colors.black26, width: 2)
             : null,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      ),
+      child: Text(
+        name!,
+        style: name == 'Close' || name == 'Cancel'
+            ? const TextStyle(color: Colors.black, fontSize: 17)
+            : const TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
       ),
     );
   }

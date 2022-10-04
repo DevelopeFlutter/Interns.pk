@@ -1,21 +1,12 @@
-
 import 'package:flutter/material.dart';
 import 'package:interns/Views/HomePage.dart';
 import 'package:interns/Views/Job%20Found.dart';
-import 'package:interns/Views/My_profile.dart';
+import 'package:interns/Views/user_Profile/My_profile.dart';
 import 'package:interns/Views/New_JobPost_section/Job_Post.dart';
-import 'package:interns/Views/OldJobPostCode/postScreenView.dart';
 import 'package:interns/Views/setting.dart';
 import 'package:interns/Theme/app_Colors.dart';
-import '../Authentication/Controller/Job_Get_Controller.dart';
-import 'OldJobPostCode/postScreenView.dart';
-import 'package:get/get.dart';
-
-
-
 class BottomBar extends StatefulWidget {
   const BottomBar({Key? key}) : super(key: key);
-
   @override
   State<BottomBar> createState() => _BottomBarState();
 }

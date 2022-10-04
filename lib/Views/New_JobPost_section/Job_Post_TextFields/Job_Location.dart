@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:interns/Theme/app_Colors.dart';
-import 'package:interns/Views/New_JobPost_section/GetX_class.dart';
-import 'package:interns/Views/New_JobPost_section/Job_Post.dart';
+// ignore: depend_on_referenced_packages
 import 'package:get/get.dart';
-import 'package:interns/Views/New_JobPost_section/Job_Post_TextFields/Reuseable_TextField_class.dart';
+// ignore: depend_on_referenced_packages
+import 'package:flutter_typeahead/flutter_typeahead.dart';
+import '../../../Authentication/Controller/GetX_class_For_JobPost.dart';
 
+// ignore: camel_case_types
 class JobPost_Location extends StatefulWidget {
   const JobPost_Location({Key? key}) : super(key: key);
 
@@ -12,11 +14,13 @@ class JobPost_Location extends StatefulWidget {
   State<JobPost_Location> createState() => _JobPost_LocationState();
 }
 
+// ignore: camel_case_types
 class _JobPost_LocationState extends State<JobPost_Location> {
-  TextEditingController JobLocationController = TextEditingController(text: '');
-  JobPostController controller1 = Get.put(JobPostController());
+  static const jobLocationList = ['Lahore', 'Karachi', 'Multan', 'Pattoki'];
+  TextEditingController jobLocationController = TextEditingController();
+  JobPostController jobLocationcontroller = Get.put(JobPostController());
 
-  bool  ForIcon = false;
+  bool forIcon = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,57 +52,75 @@ class _JobPost_LocationState extends State<JobPost_Location> {
         ),
         body: Column(
           children: [
-            Text(controller1.JobTitle.toString()),
             const Padding(
               padding: EdgeInsets.only(left: 12, top: 12),
               child: Text(
-                "This will be shown to job seekers searching for on-site jobs in this location.",
+                "This job will be shown to job seekers searching for on-site jobs in this location.",
                 style: TextStyle(color: Colors.black54, fontSize: 15),
               ),
             ),
-            SizedBox(
-              height: 200,
-              child: Column(
-                children: [
-                  TextField(
-                    onChanged: (value) {
-                      if (value.length <= 0) {
-                        setState(() {
-                          ForIcon = false;
-                        });
-                      } else {
-                        setState(() {
-                          ForIcon = true;
-                        });
-                      }
-                      JobLocationController.text = value;
-                      JobLocationController.selection =
-                          TextSelection.fromPosition(TextPosition(
-                              offset: JobLocationController.text.length));
-                      setState(() {
-                        controller1.JobLocationVal(JobLocationController.text);
-                      });
-                    },
-                    controller: JobLocationController,
-                    //Controller,
-                    decoration: InputDecoration(
-                      suffixIcon: ForIcon
-                          ? IconButton(
-                              onPressed: () {
-                                JobLocationController.clear();
-                                setState(() {
-                                  ForIcon = false;
-                                });
-                              },
-                              icon: const Icon(
-                                Icons.close,
-                                color: appcolors.greenishText,
-                              ))
-                          : null,
-                      hintText: "Search...",
-                    ),
-                  ),
-                ],
+            const SizedBox(
+              height: 15,
+            ),
+            TypeAheadFormField(
+              onSuggestionSelected: (String val) {
+                setState(() {
+                  jobLocationController.text = val;
+                  jobLocationcontroller
+                      .jobLocationVal(jobLocationController.text);
+                });
+              },
+              itemBuilder: (context, String item) {
+                return ListTile(title: Text(item));
+              },
+              suggestionsCallback: (pattern) => jobLocationList.where(
+                  (element) =>
+                      element.toLowerCase().contains(pattern.toLowerCase())),
+              hideSuggestionsOnKeyboardHide: true,
+              noItemsFoundBuilder: (context) => const Padding(
+                padding: EdgeInsets.only(
+                  left: 8,
+                ),
+                child: Text("No item Found"),
+              ),
+              textFieldConfiguration: TextFieldConfiguration(
+                autofocus: true,
+                onChanged: (value) {
+                  if (value.isEmpty) {
+                    setState(() {
+                      forIcon = false;
+                    });
+                  } else {
+                    setState(() {
+                      forIcon = true;
+                    });
+                  }
+                  jobLocationController.text = value;
+                  jobLocationController.selection = TextSelection.fromPosition(
+                      TextPosition(offset: jobLocationController.text.length));
+                  jobLocationcontroller
+                      .jobLocationVal(jobLocationController.text);
+                },
+                controller: jobLocationController,
+                decoration: InputDecoration(
+                    suffixIcon: forIcon
+                        ? Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: IconButton(
+                                onPressed: () {
+                                  jobLocationController.clear();
+                                  setState(() {
+                                    forIcon = false;
+                                  });
+                                },
+                                icon: const Icon(
+                                  Icons.close,
+                                  color: appcolors.greenishText,
+                                )),
+                          )
+                        : null,
+                    hintText: "Search...",
+                    contentPadding: const EdgeInsets.only(left: 15)),
               ),
             )
           ],

@@ -1,18 +1,19 @@
+// ignore_for_file: non_constant_identifier_names, depend_on_referenced_packages, prefer_typing_uninitialized_variables, file_names
+
 import 'package:get/get.dart';
 class JobsList extends GetxController{
-  // RxStatus loadingStatus = RxStatus.loading();
-  // RxBool isObsecureText = true.obs;
-  var message =''.obs;
-  var status =0.obs;
-   List<dynamic> data=[].obs;
+  var message ;
+  var status ;
+   List<dynamic> data=[];
   List Getdata() {
     return data;
   }
   setData(var message, var status, List<dynamic> data ){
-   this.message = message =''.obs;
-  this.status = status =0.obs;
-  this.data = data =[].obs;
- }
+   this.message = message ;
+  this.status = status;
+  this.data = data ;
+
+  }
  }
 
 

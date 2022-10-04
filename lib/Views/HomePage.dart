@@ -1,3 +1,5 @@
+// ignore_for_file: camel_case_types, depend_on_referenced_packages
+
 import 'package:flutter/material.dart';
 import 'package:interns/Authentication/Controller/Auth_Controller.dart';
 import 'package:interns/Theme/app_Colors.dart';
@@ -9,30 +11,20 @@ import 'package:interns/Authentication/View/signInView.dart';
 import 'package:interns/Authentication/View/signUpView.dart';
 import 'package:interns/backen_json/brows_job_by_city.dart';
 import 'package:interns/backen_json/lates_post.dart';
-import '../Authentication/Controller/Job_Get_Controller.dart';
 import '../Services/Auth_Services/signUp.dart';
 import 'package:get/get.dart';
 import '../utils/loader.dart';
-import '../utils/showMessage.dart';
 class homePageView extends StatefulWidget {
   const homePageView({Key? key}) : super(key: key);
   @override
   State<homePageView> createState() => _homePageViewState();
 }
 class _homePageViewState extends State<homePageView> {
-  bool showLoader = true;
-  @override
-  initState() {
-    // TestFunction.getdata();
-    getData();
-   // GetJobForm();
-    super.initState();
-    print(" The InitState is Called");
-  }
   @override
   Widget build(BuildContext context) {
     return const BottomBar();
   }
+
 }
 class hompePageSecondPart extends StatefulWidget {
   const hompePageSecondPart({Key? key}) : super(key: key);
@@ -42,21 +34,35 @@ class hompePageSecondPart extends StatefulWidget {
 class _hompePageSecondPartState extends State<hompePageSecondPart> {
   TextEditingController companyNameController = TextEditingController();
   TextEditingController placeNameController = TextEditingController();
-  Widget build(BuildContext context) {
-    // PopupLoader.show();
-    JobsList GetData = Get.find<JobsList>();
-     Authcontroller getData = Get.put (Authcontroller());
+  @override
+  initState(){
+    fetData();
+    super.initState();
+  }
+  dynamic  funcData;
+  void fetData()async{
+    try{
+        funcData = await getData();
+      setState(() {
+        funcData;
+        PopupLoader.hide();
+      });
 
-    Authcontroller Getdata = Get.find<Authcontroller>();
-     // print('${Getdata.data} Data=====9=====');
-     var datavar = GetData.data;
-     if(Getdata.data?.length==0){
-       datavar = Getdata.data;
-     }
-     else{
-       print("Nothing work");
-     }
-    // PopupLoader.hide();
+    }
+  catch (e) {
+      print(e);
+    }
+
+  }
+
+
+
+
+  @override
+  Widget build(BuildContext context) {
+    // Authcontroller getdata = Get.find<Authcontroller>();
+    Authcontroller getData = Get.put(Authcontroller());
+
     return Scaffold(
         body: SingleChildScrollView(
             child: Column(children: [
@@ -80,7 +86,8 @@ class _hompePageSecondPartState extends State<hompePageSecondPart> {
             Padding(
               padding: const EdgeInsets.only(left: 8, right: 8),
               child: TextField(
-                onChanged: (value) {},
+                onChanged: (value) {
+                },
                 controller: companyNameController,
                 decoration: const InputDecoration(
                     enabledBorder: UnderlineInputBorder(
@@ -99,11 +106,6 @@ class _hompePageSecondPartState extends State<hompePageSecondPart> {
               child: TextField(
                 controller: placeNameController,
                 onChanged: (value) {
-                  setState(() {
-                    jobs_by_city = jobs_by_city
-                        .where((element) => element.contains(value))
-                        .toList();
-                  });
                 },
                 decoration: const InputDecoration(
                     enabledBorder: UnderlineInputBorder(
@@ -148,7 +150,8 @@ class _hompePageSecondPartState extends State<hompePageSecondPart> {
             const SizedBox(
               height: 30,
             ),
-           if (getData.data ==null) Column(
+             if (getData.data==null)
+             Column(
               children: [
                 GestureDetector(
                     child: const Text(
@@ -164,7 +167,6 @@ class _hompePageSecondPartState extends State<hompePageSecondPart> {
                           MaterialPageRoute(
                               builder: (context) => const SignUpView()));
                     }),
-
             const SizedBox(
               height: 20,
             ),
@@ -202,7 +204,8 @@ class _hompePageSecondPartState extends State<hompePageSecondPart> {
                 ],
             ),
     ]
-            ) else Container()
+            )
+            else Container()
           ],
         ),
       ),
@@ -318,12 +321,13 @@ class _hompePageSecondPartState extends State<hompePageSecondPart> {
           ),
         ),
       ),
-      !GetData.data.isEmpty
+      funcData != null
           ? ListView.builder(
           physics: const ScrollPhysics(),
           shrinkWrap: true,
               scrollDirection: Axis.vertical,
-              itemCount: GetData.data.length,
+              itemCount:
+              funcData['data'].length,
               itemBuilder: (BuildContext context, int index) {
                 return Container(
                   height:120,
@@ -365,7 +369,7 @@ class _hompePageSecondPartState extends State<hompePageSecondPart> {
                                   Padding(
                                     padding: const EdgeInsets.only(top: 15),
                                     child: Text(
-                                      GetData.data[index]['job_title'],
+                                      funcData['data'][index]['job_title'],
                                       style: const TextStyle(
                                           fontSize: 20,
                                           color: Colors.black,
@@ -373,7 +377,7 @@ class _hompePageSecondPartState extends State<hompePageSecondPart> {
                                     ),
                                   ),
                                   Text(
-                                    GetData.data[index]['company_name'],
+                                    funcData['data'][index]['company_name'],
                                     style: const TextStyle(
                                       fontSize: 15,
                                       color: Colors.black87,
@@ -382,10 +386,10 @@ class _hompePageSecondPartState extends State<hompePageSecondPart> {
                                   Row(
                                     children: [
                                       Text(
-                                        GetData.data[index]['job_location'],
+                                        funcData['data'][index]['job_location'],
                                       ),
                                       Text(
-                                          "(${GetData.data[0]['work_placetype']})"),
+                                          "(${funcData['data'][index]['work_placetype']})"),
                                     ],
                                   ),
                                   Text(lates_post[index]['Post_date']),
@@ -398,16 +402,16 @@ class _hompePageSecondPartState extends State<hompePageSecondPart> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) => Jobdetails(
-                                    '${GetData.data[index]['job_location']}',
-                                    ' ${GetData.data[index]['job_title']}',
-                                    '${GetData.data[index]['job_type']}',
-                                    '${GetData.data[index]['description']}')));
+                                    '${funcData['data'][index]['job_location']}',
+                                    ' ${funcData['data'][index]['job_title']}',
+                                    '${funcData['data'][index]['job_type']}',
+                                    '${funcData['data'][index]['description']}')));
                       },
                     ),
                   ]),
                 );
               })
-          :  const Text(
+            :const Text(
               "No Data Found",
               style: TextStyle(fontSize: 36),
             ),
@@ -440,4 +444,5 @@ class _hompePageSecondPartState extends State<hompePageSecondPart> {
       ),
     ])));
   }
+
 }
