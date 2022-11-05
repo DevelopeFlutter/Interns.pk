@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:interns/Views/HomePage.dart';
 import 'package:interns/Views/Job%20Found.dart';
-import 'package:interns/Views/user_Profile/My_profile.dart';
+import 'package:interns/Views/user_Profiles/My_profile.dart';
 import 'package:interns/Views/New_JobPost_section/Job_Post.dart';
 import 'package:interns/Views/setting.dart';
 import 'package:interns/Theme/app_Colors.dart';

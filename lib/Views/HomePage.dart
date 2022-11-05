@@ -1,7 +1,8 @@
-// ignore_for_file: camel_case_types, depend_on_referenced_packages
+// ignore_for_file: camel_case_types, depend_on_referenced_packages, prefer_typing_uninitialized_variables
 
 import 'package:flutter/material.dart';
 import 'package:interns/Authentication/Controller/Auth_Controller.dart';
+import 'package:interns/Authentication/Controller/home_Page_Controller.dart';
 import 'package:interns/Theme/app_Colors.dart';
 import 'package:interns/Views/Bottom_Bar.dart';
 import 'package:interns/Views/cityListView.dart';
@@ -9,11 +10,15 @@ import 'package:interns/Views/jobListView.dart';
 import 'package:interns/Views/job_details.dart';
 import 'package:interns/Authentication/View/signInView.dart';
 import 'package:interns/Authentication/View/signUpView.dart';
+import 'package:interns/Views/textField_for_homepage_regions.dart';
+import 'package:interns/Views/user_Profiles/My_profile.dart';
 import 'package:interns/backen_json/brows_job_by_city.dart';
 import 'package:interns/backen_json/lates_post.dart';
 import '../Services/Auth_Services/signUp.dart';
 import 'package:get/get.dart';
 import '../utils/loader.dart';
+import 'package:flutter_typeahead/flutter_typeahead.dart';
+
 class homePageView extends StatefulWidget {
   const homePageView({Key? key}) : super(key: key);
   @override
@@ -34,10 +39,15 @@ class hompePageSecondPart extends StatefulWidget {
 class _hompePageSecondPartState extends State<hompePageSecondPart> {
   TextEditingController companyNameController = TextEditingController();
   TextEditingController placeNameController = TextEditingController();
+  RegionandSkillController getregionVal  = Get.put(RegionandSkillController());
+
+
+  List cities =[];
   @override
   initState(){
     fetData();
     super.initState();
+
   }
   dynamic  funcData;
   void fetData()async{
@@ -52,17 +62,16 @@ class _hompePageSecondPartState extends State<hompePageSecondPart> {
   catch (e) {
       print(e);
     }
-
   }
-
-
-
-
   @override
   Widget build(BuildContext context) {
-    // Authcontroller getdata = Get.find<Authcontroller>();
+  var   region=getregionVal.regions;
+   var skill =getregionVal.skill;
+    var obj={
+      'region':region,
+      'skill':skill,
+    };
     Authcontroller getData = Get.put(Authcontroller());
-
     return Scaffold(
         body: SingleChildScrollView(
             child: Column(children: [
@@ -87,7 +96,14 @@ class _hompePageSecondPartState extends State<hompePageSecondPart> {
               padding: const EdgeInsets.only(left: 8, right: 8),
               child: TextField(
                 onChanged: (value) {
+setState(() {
+   companyNameController.text=value ;
+   companyNameController.selection = TextSelection.fromPosition(
+       TextPosition(offset:companyNameController.text.length));
+  getregionVal.skill.value=value;
+});
                 },
+                style: const TextStyle(color: Colors.white),
                 controller: companyNameController,
                 decoration: const InputDecoration(
                     enabledBorder: UnderlineInputBorder(
@@ -103,20 +119,32 @@ class _hompePageSecondPartState extends State<hompePageSecondPart> {
             ),
             Padding(
               padding: const EdgeInsets.only(left: 8, right: 8, top: 30),
-              child: TextField(
-                controller: placeNameController,
-                onChanged: (value) {
+               child:
+              TextField(
+
+                readOnly: true,
+                style: const TextStyle(color: Colors.white),
+                onTap: (){
+                  Get.to(const HomePageRegionsTextField());
                 },
-                decoration: const InputDecoration(
+                controller:
+                placeNameController,
+                onChanged: (value) {
+
+                },
+                decoration:  const InputDecoration(
+                  focusedBorder:UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.white,width: 2)
+                  ),
                     enabledBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.white, width: 2)),
+                        borderSide: BorderSide(color: Colors.white, width: 2),),
                     prefixIcon: Icon(
                       Icons.location_on,
                       size: 30,
                       color: Colors.white,
                     ),
-                    labelText: 'All Regions',
-                    labelStyle: TextStyle(color: Colors.white, fontSize: 18)),
+                    hintText: 'All Regions',
+                    hintStyle: TextStyle(color: Colors.white, fontSize: 18)),
               ),
             ),
             const SizedBox(
@@ -139,7 +167,9 @@ class _hompePageSecondPartState extends State<hompePageSecondPart> {
                     backgroundColor:
                         MaterialStateProperty.all(appcolors.greenishText),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+   print(obj);
+                  },
                   child: const Text(
                     'Find Interns',
                     style: TextStyle(fontSize: 18),
@@ -198,7 +228,7 @@ class _hompePageSecondPartState extends State<hompePageSecondPart> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => signInView()));
+                            builder: (context) => const signInView()));
                   },
                 )
                 ],

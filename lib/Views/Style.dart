@@ -1,5 +1,6 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 class AppTextStyle {
   static TextStyle nameOfTextStyle = const TextStyle(
     fontSize: 18,

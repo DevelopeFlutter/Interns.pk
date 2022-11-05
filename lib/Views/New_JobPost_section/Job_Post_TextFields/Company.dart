@@ -1,5 +1,4 @@
 // ignore_for_file: non_constant_identifier_names, camel_case_types, depend_on_referenced_packages
-
 import 'package:flutter/material.dart';
 import 'package:interns/Theme/app_Colors.dart';
 import 'package:get/get.dart' ;
@@ -12,7 +11,7 @@ class Add_Company extends StatefulWidget {
   State<Add_Company> createState() => _Add_CompanyState();
 }
 class _Add_CompanyState extends State<Add_Company> {
-  TextEditingController CompanyController = TextEditingController(text: '');
+  TextEditingController CompanyController = TextEditingController();
   JobPostController getCompanyData = Get.put(JobPostController());
   JobPost jobPostObj = const JobPost();
   bool ForIcon = false;
@@ -47,11 +46,10 @@ class _Add_CompanyState extends State<Add_Company> {
           backgroundColor: Colors.white,
         ),
         body: TypeAheadFormField(
-
-    onSuggestionSelected: (String val) {
+            onSuggestionSelected: (String val) {
     setState(() {
     CompanyController.text =val;
-    getCompanyData.addCompanyVal(CompanyController.text);
+    getCompanyData.addCompanyVal(val);
 
 
     });

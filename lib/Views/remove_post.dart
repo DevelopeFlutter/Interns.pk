@@ -20,15 +20,6 @@ class _RemovejobState extends State<Removejob> {
     fetData();
     super.initState();
   }
-  @override
-  void didUpdateWidget(t) {
-   setState(() {
-     const Removejob();
-   });
-
-    super.didUpdateWidget(t);
-  }
-
   void fetData() async {
     // print("fetch data is Called");
     try {
@@ -36,11 +27,9 @@ class _RemovejobState extends State<Removejob> {
         isLoading = true;
       });
       getfuncData = await getData();
-
        newList = getfuncData['data'];
-      print('$newList This is the data in the List');
       if (getfuncData['status'] == 200) {
-        setState(() {
+        setState((){
           isLoading = false;
         });
       }
@@ -85,7 +74,6 @@ class _RemovejobState extends State<Removejob> {
 
   @override
   Widget build(BuildContext context) {
-    print("new list is ====> $newList");
     return Scaffold(
       appBar: AppBar(
         backgroundColor: appcolors.greenishText,
@@ -96,7 +84,7 @@ class _RemovejobState extends State<Removejob> {
         )),
       ),
       body: isLoading
-          ? PopupLoader.hide()
+          ? PopupLoader.show()
           : getfuncData['data']?.length > 0
               ? ListView.builder(
                   scrollDirection: Axis.vertical,

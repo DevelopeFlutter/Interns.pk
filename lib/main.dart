@@ -9,21 +9,22 @@ import 'Services/Auth_Services/signUp.dart';
 import 'Views/New_JobPost_section/Job_Post.dart';
 import 'package:provider/provider.dart';
 import 'package:get/get.dart';
+
+
 void main() {
-  runApp( const MyApp()
-  );
+  runApp(const MyApp());
 }
+
 class MyApp extends StatelessWidget {
-  const  MyApp({Key? key}) : super(key: key);
+  const MyApp({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-      debugShowCheckedModeBanner: false,
-      home:
-     // NewApp(),
-       const homePageView(),
-       builder: EasyLoading.init(),
-
+    TextEditingController general =TextEditingController();
+    return const GetMaterialApp(
+        debugShowCheckedModeBanner: false,
+        home:
+        // AddSummaryTextField()
+         homePageView()
     );
   }
 }

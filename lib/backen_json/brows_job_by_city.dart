@@ -1,5 +1,7 @@
 
-dynamic jobs_by_city = [
+// ignore_for_file: non_constant_identifier_names
+
+List   jobs_by_city = [
   {
     "city_name":"Lahore",
     "totalPosts":"2212",

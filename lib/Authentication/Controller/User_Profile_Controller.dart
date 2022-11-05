@@ -1,33 +1,29 @@
-// ignore_for_file: depend_on_referenced_packages
+// ignore_for_file: depend_on_referenced_packages, prefer_typing_uninitialized_variables
 
 import 'package:get/get.dart';
-class  Userprofile extends GetxController{
-  String?  summary ='';
-  String?  skill = '';
-  String?  education = '';
-  String?  project  =  '';
-  String?  langauge = '';
+
+class Userprofile extends GetxController {
+  RxList projectList =[].obs;
+  String? summary = '';
+  RxList skills = [].obs;
+  String? education = '';
+  String? project = '';
+  RxList langauge = [].obs;
   String? workhistory = '';
-  void summaryVal(val){
+  RxString projectTitle = ''.obs;
+  RxString companyName = ''.obs;
+  RxString projectUrl = ''.obs;
+  RxString customerName = ''.obs;
+  RxString customerUrl = ''.obs;
+  RxString tools = ''.obs;
+  RxString description = ''.obs;
+  void summaryVal(val) {
     summary = val;
-    print('$summary This is the UserProfileController');
   }
-  void skillsVal(val){
-    skill = val;
-  }
-  void educationVal(val){
+  void educationVal(val) {
     education = val;
   }
-  void projectsVal(val){
-    project = val;
-  }
-  void languageVal(val){
-    langauge = val;
-
-  }
-  void workhistoryVal (val){
-    workhistory =val;
-    print(workhistory);
-
+  void workhistoryVal(val) {
+    workhistory = val;
   }
 }

@@ -11,4 +11,7 @@ class ApiManager{
   static const GETPROFILE = 'get';
   static const UPDATEPROFILE = "update/userprofile/id";
   static const CHANGEPASSWORD = "update/password/";
+  static const UPDATEPOST = "update/post/";
+
+
 }

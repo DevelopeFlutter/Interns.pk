@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:interns/Authentication/Controller/Auth_Controller.dart';
 import 'package:get/get.dart';
 AuthController controller = Get.put(AuthController());
-Widget  textformfeild({
+Widget textformfeild({
   required isObscureText,
   required boolTitleShowHide,
   required fieldHint,

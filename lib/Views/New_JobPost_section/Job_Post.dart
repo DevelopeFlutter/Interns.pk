@@ -110,7 +110,7 @@ class _JobPostState extends State<JobPost> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const JobPost_Title()));
+                            builder: (context) => const Reuseable_TextField()));
                   },
                   child: Column(
                     children: [
