@@ -3,7 +3,7 @@
 import 'package:get/get.dart';
 
 class Userprofile extends GetxController {
-  RxList projectList =[].obs;
+  RxList<dynamic> projectList =[].obs;
   String? summary = '';
   RxList skills = [].obs;
   String? education = '';

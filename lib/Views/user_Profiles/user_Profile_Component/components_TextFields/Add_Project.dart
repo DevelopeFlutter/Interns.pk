@@ -21,6 +21,7 @@ class _AddProjectTextFieldState extends State<AddProjectTextField> {
   @override
   Widget build(BuildContext context) {
     List<dynamic> projectList = profileObj.projectList;
+    print('$projectList =======>');
     return Obx(
       () => Column(children: [
         profileObj.projectList.isEmpty?
@@ -28,65 +29,71 @@ class _AddProjectTextFieldState extends State<AddProjectTextField> {
               padding:  const EdgeInsets.only(left: 20,top: 10),
               child: Align(alignment:Alignment.centerLeft,child: Text("Add your project if any.",style: TextStyle(fontSize: 16,color: Colors.black.withOpacity(0.4)),)),
             ):
-        Card(
-          elevation: 0,
-          child: ListView.builder(
-            shrinkWrap: true,
-            itemCount: projectList.length,
-            itemBuilder: (BuildContext context, int index) => Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(left: 10, bottom: 30),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.baseline,
-                    textBaseline: TextBaseline.ideographic,
-                    children: [
-                      Text(
-                        '${projectList[index]['projectTitle']}',
-                        style: const TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.w300),
-                      ),
-                      Text('${projectList[index]['companyName']}',
+        ListView.builder(
+          shrinkWrap:true,
+          itemCount: projectList.length,
+          itemBuilder: (BuildContext context, int index) => Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children:[
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10, bottom: 5),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.baseline,
+                      textBaseline: TextBaseline.ideographic,
+                      children: [
+                        Text(
+                          '${projectList[index]['projectTitle']}',
                           style: const TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.w300)),
-                      Text('${projectList[index]['projectTools']}',
-                          style: const TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.w300))
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 40, right: 15),
-                  child: Column(
-                    children: [
-                      GestureDetector(
-                        child: const Icon(
-                          Icons.edit,
-                          size: 25,
-                          color: appcolors.greenishText,
+                              fontSize: 18, fontWeight: FontWeight.w300),
                         ),
-                        onTap: () {
-                          Get.to(const ForAddProject (),arguments: projectList[index] );
-
-                        },
-                      ),
-                      GestureDetector(
-                        child: const Icon(
-                          Icons.delete,
-                          size: 20,
-                          color: Colors.grey,
-                        ),
-                        onTap: () {
-                           projectList.removeAt(index);
-                        },
-                      ),
-
-                    ],
+                        Text('${projectList[index]?['companyName']}',
+                            style: const TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.w300)),
+                        Text('${projectList[index]?['projectTools']}',
+                            style: const TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.w300))
+                      ],
+                    ),
                   ),
-                ),
-              ],
-            ),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 5, right: 15),
+                    child: Column(
+                      children: [
+                        GestureDetector(
+                          child: const Icon(
+                            Icons.edit,
+                            size: 25,
+                            color: appcolors.greenishText,
+                          ),
+                          onTap: () {
+                            dynamic indax = index;
+                            Get.to( ForAddProject (Index: indax,),arguments:projectList[index],);
+                          },
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        GestureDetector(
+                          child: const Icon(
+                            Icons.delete,
+                            size: 20,
+                            color: Colors.grey,
+                          ),
+                          onTap: () {
+                             projectList.removeAt(index);
+                          },
+                        ),
+
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+               Divider(color: Colors.black.withOpacity(0.2),thickness: 2,)
+            ],
+
           ),
         ),
         const SizedBox(
@@ -95,7 +102,7 @@ class _AddProjectTextFieldState extends State<AddProjectTextField> {
         userProfileButton(
             text: 'Add projects',
             onPressed: () {
-              Get.to(const ForAddProject());
+              Get.to( ForAddProject(Index: 0,));
             })
       ]),
     );

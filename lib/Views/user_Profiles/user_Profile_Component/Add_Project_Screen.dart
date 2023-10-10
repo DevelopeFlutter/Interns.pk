@@ -1,44 +1,54 @@
 // ignore_for_file: depend_on_referenced_packages
-
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:interns/Theme/app_Colors.dart';
 import 'package:interns/Views/user_Profiles/user_Profile_Component/ElevatedButton.dart';
-
 import '../../../Authentication/Controller/User_Profile_Controller.dart';
 import 'package:get/get.dart';
-import 'components_TextFields/Add_summary.dart';
-
+import 'package:collection/collection.dart';
 class ForAddProject extends StatefulWidget {
-  const ForAddProject({Key? key}) : super(key: key);
+   ForAddProject({Key? key, required this.Index}) : super(key: key);
+  dynamic Index;
   @override
   State<ForAddProject> createState() => _ForAddProjectState();
 }
-
 class _ForAddProjectState extends State<ForAddProject> {
+  List projectComponents=[];
+  dynamic projectObj='';
   final FocusNode _focusNode = FocusNode();
-  TextEditingController projectController = TextEditingController();
-  TextEditingController companyNameController = TextEditingController();
-  TextEditingController projectUrlController = TextEditingController();
-  TextEditingController customerNameController = TextEditingController();
-  TextEditingController customerUrlController = TextEditingController();
-  TextEditingController projectToolsController = TextEditingController();
-  TextEditingController projectDescriptionController = TextEditingController();
+  dynamic projectTitle='' ;
+  dynamic companyName='' ;
+  dynamic projectUrl ='';
+  dynamic customerName ='';
+  dynamic customerURL = '';
+  dynamic projectTools = '';
+  dynamic projectDescription = '';
+  dynamic data = Get.arguments;
+  dynamic initialData ;
+  List<dynamic> newList=[];
+  @override
+  void initState(){
+    dynamic data = Get.arguments;
+    projectTitle = data?['projectTitle'];
+    companyName = data?['companyName'];
+    projectUrl = data?['projectUrl'];
+    customerName  =data?['customerName'];
+    customerURL = data?['customerURL'];
+    projectTools = data?['projectTools'];
+    projectDescription = data?['projectDescription'];
+    addData(true);
+    super.initState();
+  }
+  addData(bool val){
+    initialData = data;
+  }
+  @override
+  didChangeDependencies(){
+    super.didChangeDependencies();
+  }
   Userprofile getProjectdata = Get.put(Userprofile());
   @override
   Widget build(BuildContext context) {
-
-    dynamic data = Get.arguments;
-    print('$data this is the data get from the screen');
-    dynamic projectTitle ;
-        // projectController.text;
-    dynamic companyName = companyNameController.text;
-    dynamic projectUrl = projectUrlController.text;
-    dynamic customerName = customerNameController.text;
-    dynamic customerURL = customerUrlController.text;
-    dynamic projectTools = projectToolsController.text;
-    dynamic projectDescription = projectDescriptionController.text;
-    RxList projectComponents = [
+    projectComponents =[
       projectTitle,
       companyName,
       projectUrl,
@@ -46,8 +56,9 @@ class _ForAddProjectState extends State<ForAddProject> {
       customerURL,
       projectTools,
       projectDescription
-    ].obs;
-    dynamic projectObj = {
+    ];
+
+    projectObj = {
       'projectTitle': projectTitle,
       'companyName': companyName,
       'projectUrl': projectUrl,
@@ -56,7 +67,6 @@ class _ForAddProjectState extends State<ForAddProject> {
       'projectTools': projectTools,
       'projectDescription': projectDescription
     };
-    // print(profile.projectTitle.value);
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -71,10 +81,10 @@ class _ForAddProjectState extends State<ForAddProject> {
         title: Align(
           alignment: Alignment.centerLeft,
           child: Row(
-            children: const [
+            children:  [
               Text(
-                "Add your Projects",
-                style: TextStyle(
+                data!=null?"Edit your Project":'Add your Project',
+                style: const TextStyle(
                     fontWeight: FontWeight.w500,
                     fontSize: 18,
                     color: Colors.black),
@@ -89,15 +99,14 @@ class _ForAddProjectState extends State<ForAddProject> {
           children: [
             Padding(
               padding: const EdgeInsets.only(left: 15, right: 15, top: 20),
-              child: TextField(
-                controller: projectController,
+              child: TextFormField(
+                initialValue: data?['projectTitle'],
                  onChanged: (val) {
+                   projectTitle= val;
                    setState((){
-                     projectTitle = projectController.text;
-                //   //   print('$projectTitle =============>');
-                    });
-                //
-                 },
+
+                  });
+                    },
                 decoration: const InputDecoration(
                   hintText: 'Project Title',
                   contentPadding:
@@ -107,9 +116,13 @@ class _ForAddProjectState extends State<ForAddProject> {
             ),
             Padding(
               padding: const EdgeInsets.only(left: 15, right: 15, top: 20),
-              child: TextField(
-                controller: companyNameController,
-
+              child: TextFormField(
+initialValue:data?['companyName'],
+                onChanged: (val) {
+       companyName =val;
+                  setState((){
+                  });
+                },
                 decoration: const InputDecoration(
                   hintText: 'Company Name',
                   contentPadding:
@@ -119,8 +132,13 @@ class _ForAddProjectState extends State<ForAddProject> {
             ),
             Padding(
               padding: const EdgeInsets.only(left: 15, right: 15, top: 20),
-              child: TextField(
-                controller: projectUrlController,
+              child: TextFormField(
+                initialValue: data?['projectUrl'],
+                onChanged:(val) {
+                  projectUrl = val;
+                  setState((){
+                  });
+                },
                 decoration: const InputDecoration(
                   hintText: 'Project URL',
                   contentPadding:
@@ -130,8 +148,13 @@ class _ForAddProjectState extends State<ForAddProject> {
             ),
             Padding(
               padding: const EdgeInsets.only(left: 15, right: 15, top: 20),
-              child: TextField(
-               controller: customerNameController,
+              child: TextFormField(
+                initialValue: data?['customerName'],
+                onChanged: (val) {
+                  customerName =val;
+                  setState((){
+                  });
+                },
                 decoration: const InputDecoration(
                   hintText: 'Client/Customer Name',
                   contentPadding:
@@ -141,8 +164,13 @@ class _ForAddProjectState extends State<ForAddProject> {
             ),
             Padding(
               padding: const EdgeInsets.only(left: 15, right: 15, top: 20),
-              child: TextField(
-             controller: customerUrlController,
+              child: TextFormField(
+                initialValue: data?['customerURL'],
+                onChanged: (val) {
+                  customerURL =val;
+                  setState((){
+                  });
+                },
                 decoration: const InputDecoration(
                   hintText: 'Client/Customer URL',
                   contentPadding:
@@ -152,8 +180,13 @@ class _ForAddProjectState extends State<ForAddProject> {
             ),
             Padding(
               padding: const EdgeInsets.only(left: 15, right: 15, top: 20),
-              child: TextField(
-                controller: projectToolsController,
+              child: TextFormField(
+                initialValue: data?['projectTools'],
+                onChanged: (val) {
+                  projectTools =val;
+                  setState((){
+                  });
+                },
                 decoration: const InputDecoration(
                   hintText: 'Tools(e.g. MS Word MS Excel)',
                   contentPadding:
@@ -163,15 +196,16 @@ class _ForAddProjectState extends State<ForAddProject> {
             ),
             Padding(
               padding: const EdgeInsets.only(left: 15, right: 15, top: 10),
-              child: TextField(
-                controller: projectDescriptionController,
+              child: TextFormField(
+                initialValue: data?['projectDescription'],
                 focusNode: _focusNode,
                 textInputAction: TextInputAction.newline,
-                // keyboardType: TextInputType.,
-                // onEditingComplete: () {
-                //   print("Edit");
-                //   _focusNode.unfocus();
-                // },
+
+                onChanged:(val) {
+                  projectDescription =val;
+                  setState((){
+                  });
+                },
                 minLines: 1,
                 maxLength: 300,
                 maxLines: null,
@@ -189,33 +223,43 @@ class _ForAddProjectState extends State<ForAddProject> {
             userProfileButton(
                 text: 'Save',
                 onPressed: () {
-                  // for (int i = 0; i < projectComponents.length; i++) {
-                  //   if (projectComponents[i] !='') {
-print(projectObj);
-                  // getProjectdata.projectList.add(projectObj);
-                  //   }
-                  // }
-                  //         if(
-                  //         projectTitle&&
-                  //          companyName&&
-                  //         projectUrl&&
-                  //         customerName&&
-                  //         customerURL&&
-                  //         projectTools&&
-                  //         projectDescription
-                  //            !='' ){
-                  //           print('not equal');
-                  //           // getProjectdata.projectList.add(projectObj);
-                  //
-                  //         }
-                  //         else{
-                  //           print('equal');
-                  //         }
-                  // print('${getProjectdata.projectList} List of project');
-                }),
+                  data == null ? pushDataTolist():upData();
+                }
+                ),
+
           ],
         ),
       ),
     );
+  }
+  void pushDataTolist(){
+    bool isEmpty = false;
+    for (int i = 0; i < projectComponents.length; i++) {
+      if (projectComponents[i].isEmpty) {
+        isEmpty = true;
+      }
+    }
+    if(!isEmpty) {
+      dynamic newList = projectObj;
+      getProjectdata.projectList.add(newList);
+      Get.back();
+    }
+  }
+ void upData() {
+   bool checkComponents = false;
+   for (int i = 0; i < projectComponents.length; i++) {
+      if (projectComponents[i].isEmpty) {
+        checkComponents = true;
+      }
+    }
+    Function deepEq = const DeepCollectionEquality().equals;
+    var val = deepEq(initialData, projectObj);
+    print('$val $checkComponents Two');
+    if (!val &&!checkComponents) {
+      newList.add(projectObj);
+       print('$newList ======>');
+      getProjectdata.projectList[widget.Index]=projectObj;
+      Get.back();
+    }
   }
 }

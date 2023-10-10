@@ -121,7 +121,6 @@ class _signInViewState extends State<signInView> {
                       }),
                   textformfeild(
                       fieldHint: "Password",
-                      // fieldicon: Icons.lock_outline,
                       isObscureText: true,
                       boolTitleShowHide: true,
                       returnDatacall: (val) {

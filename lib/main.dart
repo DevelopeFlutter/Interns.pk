@@ -10,7 +10,6 @@ import 'Views/New_JobPost_section/Job_Post.dart';
 import 'package:provider/provider.dart';
 import 'package:get/get.dart';
 
-
 void main() {
   runApp(const MyApp());
 }
@@ -28,3 +27,5 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+

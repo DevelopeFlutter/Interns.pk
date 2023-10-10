@@ -1,5 +1,4 @@
 // ignore_for_file: camel_case_types, depend_on_referenced_packages, prefer_typing_uninitialized_variables
-
 import 'package:flutter/material.dart';
 import 'package:interns/Authentication/Controller/Auth_Controller.dart';
 import 'package:interns/Authentication/Controller/home_Page_Controller.dart';
@@ -10,15 +9,12 @@ import 'package:interns/Views/jobListView.dart';
 import 'package:interns/Views/job_details.dart';
 import 'package:interns/Authentication/View/signInView.dart';
 import 'package:interns/Authentication/View/signUpView.dart';
-import 'package:interns/Views/textField_for_homepage_regions.dart';
-import 'package:interns/Views/user_Profiles/My_profile.dart';
+import 'package:interns/Views/List_for_homepage_regions.dart';
 import 'package:interns/backen_json/brows_job_by_city.dart';
 import 'package:interns/backen_json/lates_post.dart';
 import '../Services/Auth_Services/signUp.dart';
 import 'package:get/get.dart';
 import '../utils/loader.dart';
-import 'package:flutter_typeahead/flutter_typeahead.dart';
-
 class homePageView extends StatefulWidget {
   const homePageView({Key? key}) : super(key: key);
   @override
@@ -40,14 +36,13 @@ class _hompePageSecondPartState extends State<hompePageSecondPart> {
   TextEditingController companyNameController = TextEditingController();
   TextEditingController placeNameController = TextEditingController();
   RegionandSkillController getregionVal  = Get.put(RegionandSkillController());
-
-
+  var regionVal;
+  bool firstTime = true;
   List cities =[];
   @override
   initState(){
     fetData();
     super.initState();
-
   }
   dynamic  funcData;
   void fetData()async{
@@ -64,8 +59,14 @@ class _hompePageSecondPartState extends State<hompePageSecondPart> {
     }
   }
   @override
+  void didChangeDependencies(){
+
+    super.didChangeDependencies();
+  }
+  @override
   Widget build(BuildContext context) {
-  var   region=getregionVal.regions;
+    placeNameController.text = getregionVal.regions.toString();
+    var   region=getregionVal.regions;
    var skill =getregionVal.skill;
     var obj={
       'region':region,
@@ -121,7 +122,6 @@ setState(() {
               padding: const EdgeInsets.only(left: 8, right: 8, top: 30),
                child:
               TextField(
-
                 readOnly: true,
                 style: const TextStyle(color: Colors.white),
                 onTap: (){

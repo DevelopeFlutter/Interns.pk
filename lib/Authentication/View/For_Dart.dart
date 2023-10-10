@@ -61,5 +61,17 @@
 //
 //
 // }
+// import 'package:collection/collection.dart';
+void main(){
+  var obj = {
+    'usman':'Ali',
+    "rizwan":"Ali"
+  };
+  var obj1 = {
+    'usman':'Ali',
+    "rizwan":"Ali"
+  };
+
+}
 //
 //

@@ -12,7 +12,7 @@ Widget textformfeild({
 // Function
 }) {
   return Container(
-    height: boolTitleShowHide ? 90 : 80,
+    height: boolTitleShowHide ? 90:80,
     // color: Colors.amber,
     padding: padding ?? const EdgeInsets.only(left: 10, right: 10, top: 0, bottom: 0),
     child: Column(
@@ -52,7 +52,7 @@ Widget textformfeild({
             ),
             labelStyle: const TextStyle(color: Colors.black54, fontSize: 18),
           ),
-          onChanged: (val) {
+          onChanged:(val) {
             returnDatacall(val);
           },
         ),

@@ -25,11 +25,31 @@ class _EditMyProfileState extends State<EditMyProfile> {
 
   Future _selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
+
         context: context,
         initialDate: DateTime.now(),
         initialDatePickerMode: DatePickerMode.day,
         firstDate: DateTime(1980),
-        lastDate: DateTime(2101));
+        lastDate: DateTime(2101),
+      builder: (context, child) {
+        return Theme(
+          data: Theme.of(context).copyWith(
+            colorScheme: ColorScheme.light(
+              primary: appcolors.greenishText, // <-- SEE HERE
+              onPrimary: Colors.black, // <-- SEE HERE
+              onSurface: Colors.black, // <-- SEE HERE
+            ),
+            textButtonTheme: TextButtonThemeData(
+              style: TextButton.styleFrom(
+                primary: Colors.black, // button text color
+              ),
+            ),
+          ),
+          child: child!,
+        );
+      },
+
+    );
     if (picked != null) {
       setState(() {
         selectedDate = picked;
@@ -40,6 +60,7 @@ class _EditMyProfileState extends State<EditMyProfile> {
               affinity: TextAffinity.upstream));
         final date = DateFormat.yMd().format(selectedDate!);
         getdata.birthDateValue(date);
+
       });
     }
   }
